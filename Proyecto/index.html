@@ -15,9 +15,13 @@
         </div>
         <nav>
             <ul>
-                <li><button class="boton-menu" onclick="selectMode('solitario')">Juega solitario</button></li>
-                <li><button class="boton-menu" onclick="selectMode('multijugador')">Juega multijugador</button></li>
-                <li><button class="boton-menu" onclick="selectMode('sin-reloj')">Juega sin reloj</button></li>
+                <li><button class="boton-menu" data-mode="solitario">Juega solitario</button></li>
+                <li><button class="boton-menu" data-mode="multijugador">Juega multijugador</button></li>
+                <li><button class="boton-menu" data-mode="sin-reloj">Juega sin reloj</button></li>
+            </ul>
+
+            <ul>
+                <li><button class="boton-menu-tema" data-mode="tema" >Seleccionar Tema </button></li>
             </ul>
         </nav>
     </section>
@@ -26,9 +30,10 @@
         <h2>Selecciona la dificultad</h2>
         <nav>
             <ul>
-                <li><button class="boton-seleccion" id="Facil" onclick="selectDifficulty('easy')">Modo Facil 4x4</button></li>
-                <li><button class="boton-seleccion" id="Medio" onclick="selectDifficulty('medium')">Modo Medio 6x6</button></li>
-                <li><button class="boton-seleccion" id="Dificil" onclick="selectDifficulty('hard')">Modo Dificil 8x8</button></li>
+                <li><button class="boton-seleccion" data-difficulty="easy" id="Facil">Modo Facil 4x4</button></li>
+                <li><button class="boton-seleccion" data-difficulty="medium" id="Medio">Modo Medio 6x6</button></li>
+                <li><button class="boton-seleccion" data-difficulty="hard" id="Dificil">Modo Dificil 8x8</button></li>
+                <li><button class="boton-back" data-function="back" >Volver al menú principal</button></li>
             </ul>
         </nav>
     </section>
@@ -37,33 +42,34 @@
         <h2>Elige a tu Croupier</h2>
         
         <div class="theme-grid">
-            <button class="card-button" onclick="selectTheme('clasico')">
+            <button class="card-button" data-theme="clasico">
                 <img src="" alt="Clásico" class="card-img">
                 <div class="card-footer"><span class="card-text">Clasico-Bot</span></div>
             </button>
 
-            <button class="card-button" onclick="selectTheme('playa')">
+            <button class="card-button" data-theme="playa">
                 <img src="" alt="Playa" class="card-img">
                 <div class="card-footer"><span class="card-text">Playa-Bot</span></div>
             </button>
 
-            <button class="card-button" onclick="selectTheme('mundial')">
+            <button class="card-button" data-theme="mundial">
                 <img src="" alt="Mundial" class="card-img">
                 <div class="card-footer"><span class="card-text">Mundial-Bot</span></div>
             </button>
 
-            <button class="card-button" onclick="selectTheme('safari')">
+            <button class="card-button" data-theme="safari">
                 <img src="" alt="Safari" class="card-img">
                 <div class="card-footer"><span class="card-text">Safari-Bot</span></div>
             </button>
         </div>
+
+        <button class="boton-back" data-function="back" >Volver al menú principal</button>
     </section>
 
     <main id="game-container" class="game-container oculto">
         
         <section id="dealer-zone" class="dealer-box">
             <img id="dealer-img" src="" alt="Dealer Reacción">
-   
         </section>
 
         <div id="memory-board" class="game-board"></div>
@@ -76,11 +82,11 @@
         </div>
     </main>
 
+    <script src="js/themes.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/board.js"></script>
     <script src="js/game.js"></script>
     <script src="js/hud.js"></script>
     <script src="js/modes.js"></script>
-    <script src="js/themes.js"></script>
 </body>
 </html>
