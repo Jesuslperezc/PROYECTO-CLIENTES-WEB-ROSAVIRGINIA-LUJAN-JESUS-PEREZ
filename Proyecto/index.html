@@ -1,56 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Black Power Casino</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <section class="main-menu">     
+
+    <section id="main-menu" class="main-menu">     
         <h1>Black Power Casino</h1>
-        <img src= alt="Robot" class="robot-menu">
-        <nav>
-            <ul>
-                
-                <li><button class="boton-menu" >Juega solitario</button> </button> </li>
-                <li><button class="boton-menu"> Juega multijugador</button></li>
-                <li><button class="boton-menu"> Juega sin reloj</button></li>
-
-            </ul>
-        </nav>
-    </section>
-
-
-    <section class="selection-menu">
-        <nav>
-            <ul>
-                
-                <li><button class="boton-seleccion " id="Facil">Modo Facil 4x4</button></li>
-                <li><button class="boton-seleccion"id="Medio"> Modo Medio 6x6</button></li>
-                <li><button class="boton-seleccion"id="Dificil"> Modo Dificil 8x8</button></li>
-
-            </ul>
-        </nav>
-    </section>
-
-    <section class="theme-menu">
-        <nav>
-            <ul>
-                
-                <li><button class="boton-theme" id="Clasico">Clasico-Bot</button></li>
-                <li><button class="boton-theme" id="Playa"> Playa-Bot</button></li>
-                <li><button class="boton-theme"id="Mundial"> Mundial-Bot</button></li>
-                <li><button class="boton-theme"id="Safari"> Safari-Bot</button></li>
-
-            </ul>
-        </nav>
-    </section>
-
-    <main class="game-container">
-        <div class="game-board">
-
+        <div class="menu-robot-container">
+            <img src="" alt="Robot Dealer" class="robot-menu">
         </div>
+        <nav>
+            <ul>
+                <li><button class="boton-menu" onclick="selectMode('solitario')">Juega solitario</button></li>
+                <li><button class="boton-menu" onclick="selectMode('multijugador')">Juega multijugador</button></li>
+                <li><button class="boton-menu" onclick="selectMode('sin-reloj')">Juega sin reloj</button></li>
+            </ul>
+        </nav>
+    </section>
+
+    <section id="selection-menu" class="selection-menu oculto">
+        <h2>Selecciona la dificultad</h2>
+        <nav>
+            <ul>
+                <li><button class="boton-seleccion" id="Facil" onclick="selectDifficulty('easy')">Modo Facil 4x4</button></li>
+                <li><button class="boton-seleccion" id="Medio" onclick="selectDifficulty('medium')">Modo Medio 6x6</button></li>
+                <li><button class="boton-seleccion" id="Dificil" onclick="selectDifficulty('hard')">Modo Dificil 8x8</button></li>
+            </ul>
+        </nav>
+    </section>
+
+    <section id="theme-menu" class="theme-menu oculto">
+        <h2>Elige a tu Croupier</h2>
+        
+        <div class="theme-grid">
+            <button class="card-button" onclick="selectTheme('clasico')">
+                <img src="" alt="Clásico" class="card-img">
+                <div class="card-footer"><span class="card-text">Clasico-Bot</span></div>
+            </button>
+
+            <button class="card-button" onclick="selectTheme('playa')">
+                <img src="" alt="Playa" class="card-img">
+                <div class="card-footer"><span class="card-text">Playa-Bot</span></div>
+            </button>
+
+            <button class="card-button" onclick="selectTheme('mundial')">
+                <img src="" alt="Mundial" class="card-img">
+                <div class="card-footer"><span class="card-text">Mundial-Bot</span></div>
+            </button>
+
+            <button class="card-button" onclick="selectTheme('safari')">
+                <img src="" alt="Safari" class="card-img">
+                <div class="card-footer"><span class="card-text">Safari-Bot</span></div>
+            </button>
+        </div>
+    </section>
+
+    <main id="game-container" class="game-container oculto">
+        
+        <section id="dealer-zone" class="dealer-box">
+            <img id="dealer-img" src="" alt="Dealer Reacción">
+   
+        </section>
+
+        <div id="memory-board" class="game-board"></div>
+        
         <div class="game-hud">
             <h2>Información del juego</h2>
             <p>Turno del jugador: <span id="player-turn">Jugador 1</span></p>
@@ -65,6 +82,5 @@
     <script src="js/hud.js"></script>
     <script src="js/modes.js"></script>
     <script src="js/themes.js"></script>
-
 </body>
 </html>
