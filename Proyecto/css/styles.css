@@ -87,11 +87,13 @@ html, body {
 .main-menu nav {
     flex-grow: 1;         
     display: flex;
-    flex-direction: column; 
-    justify-content: center;
+    flex-direction: row; 
+    justify-content: flex-start;
     align-items: center;   
-    gap: 2rem;          
-    z-index: 2;        
+    gap: 1.2rem;          
+    z-index: 2;
+    padding-left: 5%;
+    padding-right: 38%;     
 }
 
 .main-menu nav ul {
@@ -102,12 +104,72 @@ html, body {
     flex-direction: row;   
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;        
+    gap: 1.2rem;        
 }
 
 .main-menu nav li {
     margin: 0;
     padding: 0;
+}
+
+/* Botones del menu */
+.boton-menu {
+    cursor: pointer;
+}
+
+/* Efecto al pasar el mouse */
+.boton-menu:hover {
+    transform: scale(1.05);
+}
+
+.boton-menu {
+    background: transparent !important;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Efecto interactivo al pasar sobre la imagen */
+.boton-menu:hover {
+    transform: translateY(-8px);
+    filter: drop-shadow(0 0 15px #9d00ff)
+}
+
+/* La imagen se adapta al tamaño que le das al botón */
+.boton-menu img {
+    height: auto;
+    width: 230px;
+    display: block;
+    background-color: transparent;
+}
+
+.boton-menu-tema {
+    background: transparent !important;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.boton-menu-tema:hover {
+    transform: translateY(-8px);
+    filter: drop-shadow(0 0 15px #9d00ff)
+}
+
+.boton-menu-tema img {
+    height: auto;
+    width: 230px;
+    display: block;
+    background-color: transparent;
 }
 
 /* Contenedor base del tablero */
