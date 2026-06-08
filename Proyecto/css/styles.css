@@ -109,3 +109,39 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+/* Contenedor base del tablero */
+.game-board {
+    display: grid;
+    gap: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+/* Configuraciones de Grid */
+.game-board[data-dimension="4"] {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.game-board[data-dimension="6"] {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.game-board[data-dimension="8"] {
+    grid-template-columns: repeat(8, 1fr);
+}
+
+/* Estilo para las cartas */
+.carta {
+    background-color: #1f2937;
+    border: 2px solid #00ffcc;
+    border-radius: 8px;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.carta:hover {
+    transform: scale(1.05);
+}
