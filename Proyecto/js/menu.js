@@ -2,7 +2,7 @@ let modoJuego="";
 
 document.addEventListener("DOMContentLoaded",() => {
     const botonesMenu = document.querySelectorAll(".boton-menu");
-    var botonRegresar = document.querySelectorAll(".boton-back");
+    let botonRegresar = document.querySelectorAll(".boton-back");
     let botonTema = document.querySelector(".boton-menu-tema");
     botonesMenu.forEach(boton => {
         boton.addEventListener("click", (evento) => {
