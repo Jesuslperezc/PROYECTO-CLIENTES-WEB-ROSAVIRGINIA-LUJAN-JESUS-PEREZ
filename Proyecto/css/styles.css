@@ -24,37 +24,50 @@ html, body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    padding-top: 5vh;
+    align-items: stretch;
     background: url('../assets/fondo.png') no-repeat center center;
     background-size: cover;
     box-sizing: border-box;
 }
 
+.menu-franja {
+    width: 100%;
+    height: 100px;
+    background-color: rgba(10, 10, 14, 0.8);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 4rem; 
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+    z-index: 10;
+    box-sizing: border-box;
+}
+
 /* Titulo */
 .main-menu h1 {
-    color: #4a0080; 
-    font-size: 4rem;
+    color: #ffffff; 
+    font-size: 2rem;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-top: 0;
-    margin-bottom: 2rem;
-    z-index: 2; 
-    background-color: rgba(255, 255, 255, 0.9); 
-    padding: 10px 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.6), 0 0 15px #9d00ff;
-}
+    letter-spacing: 2px;
+    margin: 0;
+    z-index: 11; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    background-color: transparent; 
+    padding: 0;
+    border-radius: 0;
+    }
 
 /* Robot */
 .menu-robot-container {
     position: absolute;
     bottom: 0;
-    right: 4%;
-    width: 310px;
+    right: 0%;
+    width: 560px;
     z-index: 1;
     pointer-events: none; 
-    animation: flotarRobot 4s ease-in-out infinite;
+    animation: flotarRobot 2s ease-in-out infinite;
 }
 
 .robot-menu {
@@ -66,6 +79,6 @@ html, body {
 
 @keyframes flotarRobot {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-3px); }
+    50% { transform: translateY(-6px); }
     100% { transform: translateY(0px); }
 }
