@@ -207,3 +207,141 @@ html, body {
 .carta:hover {
     transform: scale(1.05);
 }
+
+/* Menu dificultad */
+.selection-menu {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: url('../assets/fondo.png') no-repeat center center;
+    background-size: cover;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+/* Estilo de subtitulo */
+.selection-menu h2 {
+    color: #ffffff; 
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 4rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    width: 100%;
+    height: 100px;
+    background-color: rgba(10, 10, 14, 0.8);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+}
+
+/* Cartas */
+.selection-menu nav {
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.selection-menu nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3.5rem;
+    width: 100%;
+    transform: translateY(-40px);
+    position: relative;
+}
+
+.selection-menu nav li {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.selection-menu nav ul li:last-child {
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: auto;
+}
+
+/* Boton con imagen */
+.boton-seleccion {
+    display: block;
+    width: 250px;       
+    height: 365px;     
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    background-color: transparent !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    color: transparent !important;
+    font-size: 0 !important;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
+}
+
+#Facil {
+    background-image: url('../assets/carta_facil.png');
+}
+#Medio {
+    background-image: url('../assets/carta_medio.png');
+}
+#Dificil {
+    background-image: url('../assets/carta_dificil.png');
+}
+
+.boton-seleccion:hover {
+    transform: translateY(-12px) scale(1.02);
+    filter: drop-shadow(0 0 20px #9d00ff);
+}
+
+/* Estilo de boton de volver */
+.boton-back {
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+    background: linear-gradient(135deg, #9d00ff, #6e00ff);
+    color: #ffffff;
+    border: none;
+    padding: 1.2rem 3.5rem;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(110, 0, 255, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    display: block;
+    margin: 0 !important;
+    white-space: nowrap; 
+}
+
+.boton-back:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(157, 0, 255, 0.6);
+    filter: brightness(1.15);
+}
+
+.boton-back:active {
+    transform: translateY(1px);
+}
