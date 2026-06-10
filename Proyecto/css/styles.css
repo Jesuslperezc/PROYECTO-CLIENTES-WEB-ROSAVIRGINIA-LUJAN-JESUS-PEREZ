@@ -239,7 +239,13 @@ html, body {
     justify-content: center;
     align-items: center;
 }
-
+.carta.acertada {
+    opacity: 0.6;
+    transform: scale(0.95); 
+    transition: all 0.3s ease;
+    cursor: default;
+    pointer-events: none; 
+}
 /* Ajuste para las fotos */
 .img-carta {
     width: 100%;

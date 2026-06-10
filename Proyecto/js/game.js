@@ -14,7 +14,12 @@ function activarLogicaDeJuego() {
 
         const cartaSeleccionada = evento.target.closest(".carta");
 
-  
+        if (!cartaSeleccionada || 
+            cartaSeleccionada.classList.contains("volteada") || 
+            cartaSeleccionada.classList.contains("acertada")) {
+            return;
+        }
+
         if (!cartaSeleccionada || cartaSeleccionada.classList.contains("volteada")) return;
         if (cartaSeleccionada === primeraCarta) return;
 
@@ -25,20 +30,55 @@ function activarLogicaDeJuego() {
 
 function voltearCarta(carta) {
     
-    carta.classList.add("volteada");
-    console.log(` Carta volteada. Index lógico: ${carta.dataset.index}`);
-
+ 
     if (!primeraCarta) {
         primeraCarta = carta;
+        carta.classList.add("volteada");
+        console.log(` Carta volteada. Index lógico: ${carta.dataset.index}`);
+
         return; 
     }
-
+    bloqueado = true; 
     segundaCarta = carta;
-    bloqueoTablero = true;
+    carta.classList.add("volteada");
     verificarPareja();
 }
 
 function verificarPareja(){
+    const esPareja = primeraCarta.dataset.id === segundaCarta.dataset.id;
 
+    if (esPareja) {
+        console.log("Las imágenes coinciden.");
+        desactivarCartas();
+    } else {
+        console.log(" No son iguales. Volviendo a tapar...");
+        volverATaparCartas();
+    }
 
+}
+
+function desactivarCartas() {
+  
+    primeraCarta.classList.add("acertada");
+    segundaCarta.classList.add("acertada");
+
+    console.log(" ¡Pareja asegurada! Las cartas se quedan fijas en la mesa.");
+
+    
+    resetearTurno();
+}
+
+function volverATaparCartas() {
+    setTimeout(() => {
+        
+        primeraCarta.classList.remove("volteada");
+        segundaCarta.classList.remove("volteada");
+
+        resetearTurno();
+    }, 1000);
+}
+function resetearTurno() {
+    primeraCarta = null;
+    segundaCarta = null;
+    bloqueado = false;
 }
