@@ -392,11 +392,11 @@ html, body {
 }
 
 .game-container {
-    position: relative;
+    position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 56.25vw;
     background: url('../assets/fondo_tablero.png') no-repeat center center !important;
-    background-size: cover !important;
+    background-size: contain !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -417,7 +417,7 @@ html, body {
     padding: 10px;
     box-sizing: border-box;
     position: absolute;
-    top: 42%;
+    top: 44%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
