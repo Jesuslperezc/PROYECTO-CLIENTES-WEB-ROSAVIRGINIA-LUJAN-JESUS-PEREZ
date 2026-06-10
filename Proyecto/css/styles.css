@@ -196,16 +196,55 @@ html, body {
 
 /* Estilo para las cartas */
 .carta {
-    background-color: #1f2937;
-    border: 2px solid #00ffcc;
-    border-radius: 8px;
-    aspect-ratio: 1 / 1;
+    perspective: 1000px;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    aspect-ratio: 1 / 1;
 }
 
-.carta:hover {
-    transform: scale(1.05);
+.carta-interior {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.carta.volteada .carta-interior {
+    transform: rotateY(180deg);
+}
+.carta-atras {
+    background-image: url('../assets/carta_trasera.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+.carta-atras, .carta-frente {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px; 
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.carta-frente {
+    background-color: transparent;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ajuste para las fotos */
+.img-carta {
+    width: 100%;
+    height: 110%;
+    object-fit: contain;
 }
 
 /* Menu dificultad */
