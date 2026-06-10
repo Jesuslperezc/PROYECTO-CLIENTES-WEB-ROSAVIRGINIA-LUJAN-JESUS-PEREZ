@@ -240,7 +240,7 @@ html, body {
     align-items: center;
 }
 .carta.acertada {
-    opacity: 0.6;
+    opacity: 0.4 !important;
     transform: scale(0.95); 
     transition: all 0.3s ease;
     cursor: default;
@@ -409,7 +409,7 @@ html, body {
 .game-board {
     display: grid;
     gap: 8px;
-    width: 85vw;
+    width: 85vh;
     height: 55vh;
     max-width: 480px;
     max-height: 400px;
@@ -417,7 +417,7 @@ html, body {
     padding: 10px;
     box-sizing: border-box;
     position: absolute;
-    top: 43%;
+    top: 42%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
