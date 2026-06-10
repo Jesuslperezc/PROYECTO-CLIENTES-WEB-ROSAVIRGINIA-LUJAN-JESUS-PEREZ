@@ -37,3 +37,8 @@ function voltearCarta(carta) {
     bloqueoTablero = true;
     verificarPareja();
 }
+
+function verificarPareja(){
+
+
+}
