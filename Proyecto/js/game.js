@@ -82,3 +82,4 @@ function resetearTurno() {
     segundaCarta = null;
     bloqueado = false;
 }
+

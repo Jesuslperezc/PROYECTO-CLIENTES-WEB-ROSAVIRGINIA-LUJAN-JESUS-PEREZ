@@ -80,7 +80,6 @@ for (let i = 0; i < totalCartas; i++) {
         tablero.appendChild(nuevaCarta);
     }
 
-    // Activamos el árbitro de game.js
     if (typeof activarLogicaDeJuego === "function") {
         activarLogicaDeJuego(); 
     }
