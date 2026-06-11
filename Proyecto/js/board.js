@@ -20,14 +20,14 @@ function inicializarTablero() {
     tablero.replaceChildren();
 
 
-    console.log(` [board.js] Generando el tablero para la dificultad: ${dificultadSeleccionada}`);
+    console.log(` [board.js] Generando el tablero para la dificultad: ${JuegoCasino.dificultad}`);
     let dimension = 4;
 
 
-    if (dificultadSeleccionada === "medium") {
+    if (JuegoCasino.dificultad === "medium") {
         dimension = 6;
 
-    } else if (dificultadSeleccionada === "hard") {
+    } else if (JuegoCasino.dificultad === "hard") {
         dimension = 8;
     }
     tablero.dataset.dimension = dimension; 

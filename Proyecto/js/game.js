@@ -54,6 +54,17 @@ function verificarPareja(){
         console.log(" No son iguales. Volviendo a tapar...");
         volverATaparCartas();
     }
+    if (JuegoCasino.modo === "multijugador") {
+        console.log("¡Sigue jugando el mismo usuario!");
+
+    }
+    else {
+        console.log("Modo un jugador: No hay cambio de turno.");
+    }
+    if (JuegoCasino.modo === "multijugador") {
+        JuegoCasino.turno = (JuegoCasino.turno === 1) ? 2 : 1;
+        console.log("Cambio de turno al jugador:", JuegoCasino.turno);
+    }
 
 }
 

@@ -1,4 +1,4 @@
-let modoJuego="";
+
 
 document.addEventListener("DOMContentLoaded",() => {
     const botonesMenu = document.querySelectorAll(".boton-menu");
@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded",() => {
     let botonTema = document.querySelector(".boton-menu-tema");
     botonesMenu.forEach(boton => {
         boton.addEventListener("click", (evento) => {
-            modoJuego = evento.currentTarget.dataset.mode;
-            console.log("Modo de juego seleccionado:", modoJuego);
+            JuegoCasino.modo = evento.currentTarget.dataset.mode;
+            console.log("Modo de juego seleccionado:", JuegoCasino.modo);
             document.getElementById("main-menu").classList.add("oculto");
             document.getElementById("selection-menu").classList.remove("oculto");
         });
