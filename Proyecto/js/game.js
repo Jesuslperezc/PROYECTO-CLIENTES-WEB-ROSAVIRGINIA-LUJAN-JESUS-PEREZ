@@ -2,6 +2,9 @@ let primeraCarta = null;
 let segundaCarta = null;
 let bloqueado = false;
 
+
+const baseDeRachas = [ "./assets/robot_base_2.png","./assets/robot_racha_2.png","./assets/robot_racha_4.png","./assets/robot_racha_6.png"];
+
 function activarLogicaDeJuego() {
     const tablero = document.getElementById("memory-board");
     if (!tablero) return;
@@ -48,6 +51,10 @@ function verificarPareja() {
 
     if (esPareja) {
         console.log("Las imágenes coinciden.");
+        JuegoCasino.rachaActual++;
+        if(JuegoCasino.rachaActual%3===0||JuegoCasino.rachaActual===2){
+            mostrarStreak(JuegoCasino.rachaActual);
+        }
        
         if (JuegoCasino.modo === "multijugador") {
             if (JuegoCasino.turno === 1) {
@@ -73,6 +80,7 @@ function verificarPareja() {
         }
     } else {
         console.log("No son iguales. Volviendo a tapar...");
+        JuegoCasino.rachaActual = 0;
 
         if (JuegoCasino.modo === "multijugador") {
             JuegoCasino.turno = (JuegoCasino.turno === 1) ? 2 : 1;
@@ -152,4 +160,39 @@ function verificarVictoriaMultijugador() {
             if (typeof mostrarPantallaFin === "function") mostrarPantallaFin("victoria_multijugador");
         }
     }
+}
+function mostrarStreak(racha) {
+    // 1. Corregido el selector con el punto (.) para capturar la clase CSS
+    const contenedorStreak = document.getElementById("robot-streak");
+    const imgRobot = document.querySelector(".robot-frenetico"); 
+    const textoStreak = document.querySelector(".texto-racha");
+    
+    if (!contenedorStreak || !imgRobot) return;
+
+    // 2. Control de los índices del array (0, 1, 2, 3) y flujo de condiciones limpio
+    if (racha === 2) {
+        imgRobot.src = baseDeRachas[0]; // Primera imagen
+        if (textoStreak) textoStreak.textContent = "¡STREAK X2!";
+    } 
+    else if (racha === 3) {
+        imgRobot.src = baseDeRachas[1]; // Segunda imagen
+        if (textoStreak) textoStreak.textContent = "¡STREAK X3!";
+    } 
+    else if (racha === 6) {
+        imgRobot.src = baseDeRachas[2]; // Tercera imagen
+        if (textoStreak) textoStreak.textContent = "¡MAX STREAK! ";
+    } 
+    else {
+        // Para cualquier otra racha alta consecutiva
+        imgRobot.src = baseDeRachas[3]; // Cuarta imagen
+        if (textoStreak) textoStreak.textContent = "¡ERES EL GOAT! ";
+    }
+
+    // 3. Activamos el overlay quitando la clase oculto
+    contenedorStreak.classList.remove("oculto");
+
+    // 4. Temporizador para esconder el elemento después de 1.5 segundos
+    setTimeout(() => {
+        contenedorStreak.classList.add("oculto");
+    }, 1500); 
 }

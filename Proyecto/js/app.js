@@ -8,5 +8,7 @@ const JuegoCasino = {
     puntosJ1: 0,          
     puntosJ2: 0,         
     nombreJ1: "Apostador 1",
-    nombreJ2: "Apostador 2" 
+    nombreJ2: "Apostador 2" ,
+
+    rachaActual: 0,
 };
