@@ -15,6 +15,9 @@ function barajar(array) {
 }
 
 function inicializarTablero() {
+    if (typeof actualizarInterfaz === "function") {
+        actualizarInterfaz();
+    }
     const tablero = document.getElementById("memory-board");
     if (!tablero) return;
     tablero.replaceChildren();

@@ -35,7 +35,6 @@ function voltearCarta(carta) {
     if (!primeraCarta) {
         primeraCarta = carta;
         carta.classList.add("volteada");
-        console.log(` Carta volteada. Index lógico: ${carta.dataset.index}`);
 
         return; 
     }
@@ -49,36 +48,53 @@ function verificarPareja() {
 
     if (esPareja) {
         console.log("Las imágenes coinciden.");
-        desactivarCartas();
-
-
+       
         if (JuegoCasino.modo === "multijugador") {
-            console.log(` Sigue jugando el Jugador ${JuegoCasino.turno}`);
-
+            if (JuegoCasino.turno === 1) {
+                JuegoCasino.puntosJ1++;
+                console.log(`Puntos del Jugador 1: ${JuegoCasino.puntosJ1}`);
+            } else {
+                JuegoCasino.puntosJ2++;
+                console.log(`Puntos del Jugador 2: ${JuegoCasino.puntosJ2}`);
+            }
         } else {
             console.log("Modo un jugador: Pareja acertada.");
+            JuegoCasino.puntosJ1++;
+            
+            console.log(`Puntos del Jugador 1: ${JuegoCasino.puntosJ1}`);
         }
 
+        
+        desactivarCartas();
+
+        if (!bloqueado && JuegoCasino.modo === "multijugador") {
+            console.log(`Sigue jugando el Jugador ${JuegoCasino.turno}`);
+            actualizarInterfaz();
+        }
     } else {
         console.log("No son iguales. Volviendo a tapar...");
-        
 
         if (JuegoCasino.modo === "multijugador") {
             JuegoCasino.turno = (JuegoCasino.turno === 1) ? 2 : 1;
             console.log("Cambio de turno. Ahora le toca al jugador:", JuegoCasino.turno);
-
+            actualizarInterfaz();
         }
 
         volverATaparCartas();
     }
 }
+
 function desactivarCartas() {
   
     primeraCarta.classList.add("acertada");
     segundaCarta.classList.add("acertada");
 
-    console.log(" ¡Pareja asegurada! Las cartas se quedan fijas en la mesa.");
-    verificarVictoriaSolitario();
+    if (JuegoCasino.modo === "solitario") {
+        verificarVictoriaSolitario();
+    }
+    if (JuegoCasino.modo === "multijugador") {
+        verificarVictoriaMultijugador();
+    }
     
     resetearTurno();
 }
@@ -107,6 +123,33 @@ function verificarVictoriaSolitario() {
         
         if (typeof detenerTemporizador === "function") {
             detenerTemporizador();
+        }
+    }
+}
+
+function verificarVictoriaMultijugador() {
+    const todasLasCartas = document.querySelectorAll(".carta");
+    const cartasAcertadas = document.querySelectorAll(".carta.acertada");
+
+   
+    if (todasLasCartas.length > 0 && todasLasCartas.length === cartasAcertadas.length) {
+        
+        console.log("¡Mesa limpia! Evaluando apuestas finales...");
+        bloqueado = true;
+
+        if (typeof detenerTemporizador === "function") {
+            detenerTemporizador();
+        }
+
+        if (JuegoCasino.puntosJ1 > JuegoCasino.puntosJ2) {
+            console.log(`El ganador es ${JuegoCasino.nombreJ1} con ${JuegoCasino.puntosJ1} puntos.`);
+            if (typeof mostrarPantallaFin === "function") mostrarPantallaFin("victoria_multijugador");
+        } else if (JuegoCasino.puntosJ2 > JuegoCasino.puntosJ1) {
+            console.log(`El ganador es ${JuegoCasino.nombreJ2} con ${JuegoCasino.puntosJ2} puntos.`);
+            if (typeof mostrarPantallaFin === "function") mostrarPantallaFin("victoria_multijugador");
+        } else {
+            console.log("¡Es un empate! Ambos jugadores tienen la misma cantidad de puntos.");
+            if (typeof mostrarPantallaFin === "function") mostrarPantallaFin("victoria_multijugador");
         }
     }
 }
