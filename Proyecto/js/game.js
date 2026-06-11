@@ -102,6 +102,8 @@ function verificarVictoriaSolitario() {
     const todasLasCartas = document.querySelectorAll(".carta");
     const cartasAcertadas = document.querySelectorAll(".carta.acertada");
     if (todasLasCartas.length > 0 && todasLasCartas.length === cartasAcertadas.length) {
+        console.log("¡Felicidades! Has encontrado todas las parejas.");
+        bloqueado = true;
         
         if (typeof detenerTemporizador === "function") {
             detenerTemporizador();

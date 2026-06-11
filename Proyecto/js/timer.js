@@ -56,7 +56,19 @@ function actualizarInterfazTimer() {
     const segundosFormateados = segundos < 10 ? "0" + segundos : segundos;
     contenedorTimer.textContent = `${minutosFormateados}:${segundosFormateados}`;
 } 
-
 function finalizarPartidaPorTiempo() {    
     JuegoCasino.tiempoAgotado = true;
+    console.log("¡Tiempo agotado! No lograste encontrar todas las parejas a tiempo.");
+    
+    bloqueado = true; 
+
+
+    const cartasVolteadas = document.querySelectorAll(".carta.volteada"); 
+    cartasVolteadas.forEach(carta => {
+        carta.classList.remove("volteada"); 
+    });
+
+    primeraCarta = null;
+    segundaCarta = null;
+    console.log("El juego se ha bloqueado. Puedes reiniciar para intentarlo de nuevo.");
 }

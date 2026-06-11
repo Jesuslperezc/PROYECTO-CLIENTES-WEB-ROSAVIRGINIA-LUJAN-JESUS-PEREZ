@@ -1,6 +1,7 @@
 const JuegoCasino = {
     modo: "",
     dificultad: "easy",
+    tiempoAgotado: false,
 
     // Variables exclusivas para el Modo Multijugador
     turno: 1,  
