@@ -245,16 +245,14 @@ html, body {
     width: 100%;
 }
 
-
 .flex-input {
     position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Evita que este contenedor invisible tape los clics del juego */
+    pointer-events: none;
 }
-
 
 #inputs-nombres input[type="text"] {
     position: absolute; 
@@ -277,9 +275,6 @@ html, body {
     font-size: 0.85rem;
 }
 
-
-
-
 #input-j1 {
     top: 40px;  
     left: 40px;  
@@ -289,7 +284,6 @@ html, body {
     box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
 }
 
-
 #input-j2 {
     top: 40px;  
     right: 40px; 
@@ -298,6 +292,7 @@ html, body {
     border-color: #ff00ff;
     box-shadow: 0 0 12px rgba(255, 0, 255, 0.6);
 }
+
 /* Menu dificultad */
 .selection-menu {
     position: relative;
@@ -486,28 +481,62 @@ html, body {
     display: none !important;
 }
 
+<<<<<<< HEAD
+=======
+.game-hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent !important; 
+    border: none !important; 
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.game-hud h2 {
+    display: none !important;
+}
+
+.game-hud p {
+    margin: 0;
+    position: absolute;
+    pointer-events: auto;
+}
+
+.game-hud p:nth-of-type(1) {
+    display: none !important;
+}
+
+.game-hud p:nth-of-type(2) {
+    top: 9%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0;
+}
+>>>>>>> 6c8ae45a79534a440b82006a659b1fd17077e920
 
 #timer {
-    font-size: 1.5rem;
-    color: #00ffcc; 
-    text-shadow: 0 0 12px rgba(0, 255, 204, 0.8);
-    background: rgba(0, 0, 0, 0.4);
-    padding: 0.2rem 0.8rem;
-    border-radius: 6px;
-    border: 1px solid rgba(0, 255, 204, 0.3);
+    font-size: 4rem;
+    color: #ffffff; 
+    background: transparent !important;
+    border: none !important;
+    padding: 0;
     font-variant-numeric: tabular-nums; 
-    min-width: 75px;
-    text-align: center;
+    display: inline-block;
 }
 
 #timer.tiempo-alerta {
     color: #ff0055;
-    text-shadow: 0 0 15px #ff0055;
-    border-color: #ff0055;
+    text-shadow: 0 0 25px #ff0055;
     animation: pulsoAlerta 1s infinite alternate;
 }
 #restart-button {
     position: absolute;
+<<<<<<< HEAD
     bottom: 25px; /* Lo clava a 25px del borde inferior de la pantalla */
     left: 50%;
     transform: translateX(-50%); /* Centrado horizontal perfecto */
@@ -525,13 +554,36 @@ html, body {
     z-index: 20; /* Asegura que siempre esté por encima del tablero */
     transition: all 0.2s ease;
     pointer-events: auto; /* IMPORTANTE: Permite que se le pueda dar clic sin peos */
+=======
+    bottom: 35px;
+    left: 35px;
+    width: auto;
+    padding: 1rem 2.2rem;
+    pointer-events: auto;
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+    background: #43bba3;
+    color: #ffffff; 
+    border: 2px solid #43bba3;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+>>>>>>> 6c8ae45a79534a440b82006a659b1fd17077e920
 }
 
 /* Efecto al pasar el mouse por encima */
 #restart-button:hover {
+<<<<<<< HEAD
     transform: translateX(-50%) scale(1.05); /* Mantiene el centro y crece un pelo */
     background: #fff; /* Cambia a blanco brillante */
     box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+=======
+    transform: translateY(-4px);
+    background-color: rgba(0, 255, 204, 0.1) !important;
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.5);
+>>>>>>> 6c8ae45a79534a440b82006a659b1fd17077e920
 }
 
 /* Efecto al hundirlo */
