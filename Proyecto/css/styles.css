@@ -379,7 +379,7 @@ html, body {
     width: 100vw;
     height: 56.25vw; 
     max-height: 100vh;
-    background: url('../assets/fondo_tablero.png') no-repeat center center !important;
+    background: url('../assets/fondo_tablero.jpg') no-repeat center center !important;
     background-size: contain !important; 
     display: flex;
     flex-direction: column;
@@ -396,11 +396,11 @@ html, body {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 6px; 
-    width: 38vh;   
-    height: 52vh;  
+    width: 46vh;   
+    height: 61vh;  
     box-sizing: border-box;
     position: absolute;
-    top: 48%;   
+    top: 56%;   
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
