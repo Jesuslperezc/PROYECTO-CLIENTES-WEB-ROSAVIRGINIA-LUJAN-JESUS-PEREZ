@@ -44,31 +44,34 @@ function voltearCarta(carta) {
     carta.classList.add("volteada");
     verificarPareja();
 }
-
-function verificarPareja(){
+function verificarPareja() {
     const esPareja = primeraCarta.dataset.id === segundaCarta.dataset.id;
 
     if (esPareja) {
         console.log("Las imágenes coinciden.");
         desactivarCartas();
+
+
+        if (JuegoCasino.modo === "multijugador") {
+            console.log(` Sigue jugando el Jugador ${JuegoCasino.turno}`);
+
+        } else {
+            console.log("Modo un jugador: Pareja acertada.");
+        }
+
     } else {
-        console.log(" No son iguales. Volviendo a tapar...");
+        console.log("No son iguales. Volviendo a tapar...");
+        
+
+        if (JuegoCasino.modo === "multijugador") {
+            JuegoCasino.turno = (JuegoCasino.turno === 1) ? 2 : 1;
+            console.log("Cambio de turno. Ahora le toca al jugador:", JuegoCasino.turno);
+
+        }
+
         volverATaparCartas();
     }
-    if (JuegoCasino.modo === "multijugador") {
-        console.log("¡Sigue jugando el mismo usuario!");
-
-    }
-    else {
-        console.log("Modo un jugador: No hay cambio de turno.");
-    }
-    if (JuegoCasino.modo === "multijugador") {
-        JuegoCasino.turno = (JuegoCasino.turno === 1) ? 2 : 1;
-        console.log("Cambio de turno al jugador:", JuegoCasino.turno);
-    }
-
 }
-
 function desactivarCartas() {
   
     primeraCarta.classList.add("acertada");
