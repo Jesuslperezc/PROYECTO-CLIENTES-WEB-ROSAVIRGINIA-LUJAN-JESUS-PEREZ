@@ -7,8 +7,9 @@ function activarLogicaDeJuego() {
     if (!tablero) return;
     
     console.log("[game.js] Lógica de juego activada. Escuchando clics en el tablero...");
-    
- 
+    if (JuegoCasino.tiempoAgotado === undefined) {
+        JuegoCasino.tiempoAgotado = false; 
+    }
     tablero.addEventListener("click", function(evento) {
         if (bloqueado) return;
 
@@ -74,7 +75,7 @@ function desactivarCartas() {
     segundaCarta.classList.add("acertada");
 
     console.log(" ¡Pareja asegurada! Las cartas se quedan fijas en la mesa.");
-
+    verificarVictoriaSolitario();
     
     resetearTurno();
 }
@@ -94,3 +95,13 @@ function resetearTurno() {
     bloqueado = false;
 }
 
+function verificarVictoriaSolitario() {
+    const todasLasCartas = document.querySelectorAll(".carta");
+    const cartasAcertadas = document.querySelectorAll(".carta.acertada");
+    if (todasLasCartas.length > 0 && todasLasCartas.length === cartasAcertadas.length) {
+        
+        if (typeof detenerTemporizador === "function") {
+            detenerTemporizador();
+        }
+    }
+}

@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const botonesDificultad = document.querySelectorAll(".boton-seleccion");
     botonesDificultad.forEach(boton => {
@@ -10,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("game-container").classList.remove("oculto");
                 if (typeof inicializarTablero === "function") {
                 inicializarTablero(); 
+            }
+            if (typeof iniciarTemporizador === "function") {
+                iniciarTemporizador(); 
             }
         });
     });

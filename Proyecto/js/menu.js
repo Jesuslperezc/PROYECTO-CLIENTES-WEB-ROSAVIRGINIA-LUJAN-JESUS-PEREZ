@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded",() => {
     const botonesMenu = document.querySelectorAll(".boton-menu");
     let botonRegresar = document.querySelectorAll(".boton-back");
@@ -23,11 +21,14 @@ document.addEventListener("DOMContentLoaded",() => {
     botonRegresar.forEach(boton => {
          boton.addEventListener("click", (evento) => {
             console.log("Regresando al menú principal");
+            if (typeof detenerTemporizador === "function") {
+            detenerTemporizador();
+            }
+            JuegoCasino.tiempoAgotado = false;
             document.getElementById("selection-menu").classList.add("oculto");
             document.getElementById("theme-menu").classList.add("oculto");
+            document.getElementById("game-container").classList.add("oculto");
             document.getElementById("main-menu").classList.remove("oculto");
         });
     });
-
 });
-
