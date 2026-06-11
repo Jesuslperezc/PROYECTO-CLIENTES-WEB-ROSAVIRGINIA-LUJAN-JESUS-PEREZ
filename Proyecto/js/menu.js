@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded",() => {
-=======
-document.addEventListener("DOMContentLoaded", () => {
->>>>>>> e802b3d5b6428b0f6b95122e90b462cf867dc3a4
     const botonesMenu = document.querySelectorAll(".boton-menu");
     let botonRegresar = document.querySelectorAll(".boton-back");
     let botonTema = document.querySelector(".boton-menu-tema");
@@ -59,13 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     botonRegresar.forEach(boton => {
         boton.addEventListener("click", (evento) => {
             console.log("Regresando al menú principal");
-<<<<<<< HEAD
-            if (typeof detenerTemporizador === "function") {
-            detenerTemporizador();
-            }
-            JuegoCasino.tiempoAgotado = false;
-=======
-            
             const input1 = document.getElementById("input-j1");
             const input2 = document.getElementById("input-j2");
             if (input1) input1.value = "";
@@ -74,15 +63,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const contenedorNombres = document.getElementById("inputs-nombres");
             if (contenedorNombres) contenedorNombres.classList.add("oculto");
 
->>>>>>> e802b3d5b6428b0f6b95122e90b462cf867dc3a4
+            if (typeof detenerTemporizador === "function") {
+            detenerTemporizador();
+            }
+            JuegoCasino.tiempoAgotado = false;            
             document.getElementById("selection-menu").classList.add("oculto");
             document.getElementById("theme-menu").classList.add("oculto");
             document.getElementById("game-container").classList.add("oculto");
             document.getElementById("main-menu").classList.remove("oculto");
         });
     });
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> e802b3d5b6428b0f6b95122e90b462cf867dc3a4
