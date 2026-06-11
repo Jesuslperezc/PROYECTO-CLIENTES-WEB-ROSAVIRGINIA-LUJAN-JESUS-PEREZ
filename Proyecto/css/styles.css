@@ -487,43 +487,40 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: transparent !important; 
-    border: none !important; 
+    background: transparent !important;
+    border: none !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
     pointer-events: none;
     z-index: 999;
 }
 
+.game-hud * {
+    pointer-events: auto;
+}
+
 .game-hud h2 {
     display: none !important;
 }
 
-.game-hud p {
-    margin: 0;
+.game-hud .timer {
     position: absolute;
-    pointer-events: auto;
-}
-
-.game-hud p:nth-of-type(1) {
-    display: none !important;
-}
-
-.game-hud p:nth-of-type(2) {
-    top: 9%;
+    top: 90px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 #timer {
-    font-size: 4rem;
-    color: #ffffff; 
-    background: transparent !important;
-    border: none !important;
-    padding: 0;
+    font-size: 3.5rem; 
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
     font-variant-numeric: tabular-nums; 
     display: inline-block;
+    font-family: 'Luckiest Guy', cursive, sans-serif;
 }
 
 #timer.tiempo-alerta {
@@ -531,191 +528,116 @@ html, body {
     text-shadow: 0 0 25px #ff0055;
     animation: pulsoAlerta 1s infinite alternate;
 }
+
 #restart-button {
     position: absolute;
     bottom: 35px;
     left: 35px;
     width: auto;
     padding: 1rem 2.2rem;
-    pointer-events: auto;
     font-family: 'Luckiest Guy', cursive, sans-serif;
-    background: #43bba3;
-    color: #ffffff; 
-    border: 2px solid #43bba3;
+    background: transparent !important; 
+    color: #00ffcc; 
+    border: 2px solid #00ffcc;
     font-size: 1.2rem;
     border-radius: 8px;
     cursor: pointer;
     text-transform: uppercase;
     box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    z-index: 1000;
 }
 
-/* Efecto al pasar el mouse por encima */
 #restart-button:hover {
     transform: translateY(-4px);
     background-color: rgba(0, 255, 204, 0.1) !important;
     box-shadow: 0 0 25px rgba(0, 255, 204, 0.5);
 }
 
-/* Efecto al hundirlo */
 #restart-button:active {
-    transform: translateX(-50%) scale(0.98);
-}
-.contenedor-turno-central {
-    margin: 70px auto 0;
-    max-width: 1000px; /* Al ancho de tu tablero */
-    width: 100%;
+    transform: translateY(1px);
 }
 
-#mensaje-turno {
-    display: flex;
-    justify-content: space-between; /* Uno a la izquierda, otro a la derecha */
-    align-items: center;
-    width: 100%;
-    font-family: 'Arial Black', sans-serif;
-    font-size: 32px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
-}
-
-.etiqueta-turno {
-    color: #000000;
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.815);
-   background: linear-gradient(135deg, #00ffcc, #00b3ff);
-    padding: 0.2rem 0.8rem;
-    border-radius: 6px;
-    border: 1px solid rgba(0, 255, 204, 0.3);
-}
-    
-.turno-j1 #nombre-apostador {
-    color: #000000 !important;
-    text-shadow: 0 2px 15px #ff0000 !important;
-    background: linear-gradient(135deg, #ff0055, #990033); /* Degradado rojizo/oscuro para contrastar el texto */
-    border: 1px solid rgba(255, 0, 85, 0.5);
-    box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
-}
-
-
-.turno-j2 #nombre-apostador {
-    color: #000000 !important;
-    text-shadow: 0 0 15px #00ffff !important;
-    background: linear-gradient(135deg, #0055ff, #00115c); /* Degradado azul/oscuro para contrastar */
-    border: 1px solid rgba(0, 85, 255, 0.5);
-    box-shadow: 0 0 15px rgba(0, 85, 255, 0.4);
-}
-
-game-hud {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    pointer-events: none; /* Crucial para que te deje clickear las cartas de la mesa */
-    z-index: 10;
-}
-
-/* Forzamos a que los hijos directos (los botones y marcadores) sí reciban los clics */
-.game-hud * {
-    pointer-events: auto;
-}
-
-/* --- EL CONTENEDOR INDEPENDIENTE DEL TIMER --- */
-/* Modificamos la clase .timer para que flote arriba al centro sin importar el modo */
-.game-hud .timer {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%); /* Centrado horizontal exacto */
-    background: rgba(0, 0, 0, 0.85);
-    padding: 6px 22px;
-    border-radius: 30px;
-    border: 2px solid #ffcc00; /* Estilo dorado casino */
-    box-shadow: 0 0 12px rgba(255, 204, 0, 0.4);
-    z-index: 15;
-}
-
-.game-hud .timer p {
-    margin: 0;
-    font-family: 'Arial Black', sans-serif;
-    color: #ffffff;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-/* --- ESTILO BASE PARA AMBOS MARCADORES DE LAS ESQUINAS --- */
 .marcador-hud {
     position: absolute;
-    top: 20px; /* Separación fija del techo */
-    background: rgba(0, 0, 0, 0.8); /* Recuadro oscuro individual e independiente */
-    padding: 12px 20px;
+    top: 20px;
+    background: rgba(10, 10, 14, 0.85);
+    backdrop-filter: blur(4px);
+    padding: 10px 20px;
     border-radius: 8px;
     display: flex;
-    flex-direction: column; /* Nombre arriba, puntos abajo */
+    flex-direction: column;
     align-items: center;
-    min-width: 140px;
+    min-width: 130px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    font-family: 'Arial Black', sans-serif;
-    letter-spacing: 1px;
 }
 
-/* --- CLAVAMOS CADA MARCADOR EN SU ESQUINA PROPORCIONAL --- */
-
-/* Jugador 1: Esquina superior izquierda */
 #marcador-j1 {
-    left: 3%; /* Usa porcentaje para que sea proporcional al game-container */
-    border: 2px solid #ff0000; /* Neón cian */
-    color: #ff1100;
+    left: 3%;
+    border: 2px solid #ff0055;
 }
 
-/* Jugador 2: Esquina superior derecha */
 #marcador-j2 {
-    right: 3%; /* Usa porcentaje para que sea proporcional al game-container */
-    border: 2px solid #3d00af; /* Neón rosa */
-    color: #3700ff;
+    right: 3%;
+    border: 2px solid #0055ff;
 }
 
-/* Tipografía interna de tus marcadores */
 .nombre-hud {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
-    color: #fff;
-    margin-bottom: 5px;
+    color: #ffffff;
+    margin-bottom: 2px;
 }
 
 .puntos-hud {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #fff;
+    color: #ffffff;
 }
 
-/* --- EL TIMER: SE INDEPENDIZA EN EL CENTRO SUPERIOR --- */
-.game-hud h2 {
-    display: none; /* Escondemos el letrero de "Información del juego" para limpiar espacio */
-}
-
-.game-hud p {
+.contenedor-turno-central {
     position: absolute;
     top: 20px;
     left: 50%;
-    transform: translateX(-50%); /* Centrado horizontal perfecto */
-    background: rgba(0, 0, 0, 0.85);
-    padding: 8px 20px;
-    border-radius: 30px;
-    border: 2px solid #ffcc00; /* Estilo dorado casino */
-    color: #fff;
-    font-family: 'Arial Black', sans-serif;
-    font-size: 1rem;
-    margin: 0;
-    box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+    transform: translateX(-50%);
+    width: auto;
+    z-index: 10;
 }
 
+#mensaje-turno {
+    margin: 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
 
+.etiqueta-turno {
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+#nombre-apostador {
+    padding: 4px 14px;
+    border-radius: 6px;
+    color: #ffffff !important;
+}
+
+.turno-j1 #nombre-apostador {
+    background: linear-gradient(135deg, #ff0055, #990033);
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+}
+
+.turno-j2 #nombre-apostador {
+    background: linear-gradient(135deg, #0055ff, #00115c);
+    box-shadow: 0 0 10px rgba(0, 85, 255, 0.5);
+}
+
+@keyframes pulsoAlerta {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
 
 /* Contenedor de Racha */
 .streak-container {
@@ -728,19 +650,17 @@ game-hud {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 999; /* Por encima de las cartas, menús y botones */
-
+    z-index: 999;
     backdrop-filter: blur(2px);
     pointer-events: none; 
 }
 
 /* La imagen del Robot con animación violenta */
 .robot-frenetico {
-    width: 450px; /* Tamaño imponente */
+    width: 450px;
     height: auto;
     filter: drop-shadow(0 0 30px #ff0055) drop-shadow(0 0 50px #ffcc00);
-    animation: aparecerSusto 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, 
-               sacudidaFrenetica 0.1s infinite alternate;
+    animation: aparecerSusto 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, sacudidaFrenetica 0.1s infinite alternate;
 }
 
 /* Texto gigante neón abajo del robot */
