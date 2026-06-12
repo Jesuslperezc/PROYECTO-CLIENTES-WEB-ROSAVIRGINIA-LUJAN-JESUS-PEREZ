@@ -52,12 +52,19 @@ function verificarPareja() {
     if (esPareja) {
         console.log("Las imágenes coinciden.");
         JuegoCasino.rachaActual++;
+        if (JuegoCasino.puntosJ1 === 0) {
+            
+            verificarLogro("primer_paso");
+        }
         if(JuegoCasino.rachaActual%3===0||JuegoCasino.rachaActual===2){
             mostrarStreak(JuegoCasino.rachaActual);
         }
+
+
        
         if (JuegoCasino.modo === "multijugador") {
             if (JuegoCasino.turno === 1) {
+                
                 JuegoCasino.puntosJ1++;
                 console.log(`Puntos del Jugador 1: ${JuegoCasino.puntosJ1}`);
             } else {
@@ -81,6 +88,7 @@ function verificarPareja() {
     } else {
         console.log("No son iguales. Volviendo a tapar...");
         JuegoCasino.rachaActual = 0;
+
 
         if (JuegoCasino.modo === "multijugador") {
             JuegoCasino.turno = (JuegoCasino.turno === 1) ? 2 : 1;
@@ -129,12 +137,37 @@ function verificarVictoriaSolitario() {
     if (todasLasCartas.length > 0 && todasLasCartas.length === cartasAcertadas.length) {
         console.log("¡Felicidades! Has encontrado todas las parejas.");
         bloqueado = true;
+        verificarLogro("banca_rota");
         
         if (typeof detenerTemporizador === "function") {
             detenerTemporizador();
         }
+        let tiempoInicial = 0;
+        if (JuegoCasino.dificultad === "easy") {
+            tiempoInicial = 90;
+        } else if (JuegoCasino.dificultad === "medium") {
+            tiempoInicial = 180;
+        } else if (JuegoCasino.dificultad === "hard") {
+            tiempoInicial = 300;
+        }
+
+       
+        const tiempoTranscurrido = tiempoInicial - tiempoRestante;
+
+        if (tiempoTranscurrido < 60) {
+            if(JuegoCasino.dificultad === "easy"){
+            verificarLogro("corredor");
+            } else if(JuegoCasino.dificultad === "medium"){
+                verificarLogro("corredor_medio");
+            } else if(JuegoCasino.dificultad === "hard"){
+                verificarLogro("corredor_dificil");
+            }
+
+        }
+
     }
 }
+
 
 function verificarVictoriaMultijugador() {
     const todasLasCartas = document.querySelectorAll(".carta");
@@ -158,20 +191,22 @@ function verificarVictoriaMultijugador() {
             if (typeof mostrarPantallaFin === "function") mostrarPantallaFin("victoria_multijugador");
         } else {
             console.log("¡Es un empate! Ambos jugadores tienen la misma cantidad de puntos.");
+            verificarLogro("empate_epico");
             if (typeof mostrarPantallaFin === "function") mostrarPantallaFin("victoria_multijugador");
         }
     }
 }
 
 function mostrarStreak(racha) {
-    // 1. Corregido el selector con el punto (.) para capturar la clase CSS
+
     const contenedorStreak = document.getElementById("robot-streak");
     const imgRobot = document.querySelector(".robot-frenetico"); 
     const textoStreak = document.querySelector(".texto-racha");
     
     if (!contenedorStreak || !imgRobot) return;
 
-    // 2. Control de los índices del array (0, 1, 2, 3) y flujo de condiciones limpio
+
+
     if (racha === 2) {
         imgRobot.src = baseDeRachas[0]; // Primera imagen
         if (textoStreak) textoStreak.textContent = "¡STREAK X2!";
@@ -179,14 +214,16 @@ function mostrarStreak(racha) {
     else if (racha === 3) {
         imgRobot.src = baseDeRachas[1]; // Segunda imagen
         if (textoStreak) textoStreak.textContent = "¡STREAK X3!";
+        verificarLogro("streak_fuego");
     } 
     else if (racha === 6) {
         imgRobot.src = baseDeRachas[2]; // Tercera imagen
         if (textoStreak) textoStreak.textContent = "¡MAX STREAK! ";
+        verificarLogro("imparable");
     } 
     else {
-        // Para cualquier otra racha alta consecutiva
-        imgRobot.src = baseDeRachas[3]; // Cuarta imagen
+        
+        imgRobot.src = baseDeRachas[3]; 
         if (textoStreak) textoStreak.textContent = "¡ERES EL GOAT! ";
     }
 
