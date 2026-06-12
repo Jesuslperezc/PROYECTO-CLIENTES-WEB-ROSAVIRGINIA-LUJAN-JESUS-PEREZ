@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (botonReiniciar) {
         botonReiniciar.addEventListener("click", () => {
             if (typeof JuegoCasino !== "undefined") {
+                JuegoCasino.clicsGenerales= 0;
                 JuegoCasino.puntosJ1 = 0;
                 JuegoCasino.puntosJ2 = 0;
                 JuegoCasino.rachaActual = 0;
@@ -51,7 +52,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 JuegoCasino.tiempoAgotado = false;
                 JuegoCasino.nombreJ1 = "";
                 JuegoCasino.nombreJ2 = "";
+                
             }
+            const visorClics=document.getElementById("contador-clics");
+            if (visorClics) visorClics.textContent = "0";
+
             if (typeof inicializarTablero === "function") {
                 inicializarTablero();
             }
@@ -84,8 +89,9 @@ function actualizarInterfaz() {
 
     if (JuegoCasino.modo !== "multijugador") {
         if (contenedorTurno) contenedorTurno.classList.add("oculto");
-        if (cajaMarcadorJ1) cajaMarcadorJ1.classList.add("oculto");
         if (cajaMarcadorJ2) cajaMarcadorJ2.classList.add("oculto");
+        if (cajaMarcadorJ1) cajaMarcadorJ1.classList.add("oculto")
+
         return; 
     }
 

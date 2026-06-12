@@ -591,6 +591,40 @@ html, body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
+/* Contador de Movimientos */
+.marcador-clics {
+    position: absolute;
+    top: 20px;
+    right: 6%; 
+    background: rgba(10, 10, 14, 0.85);
+    backdrop-filter: blur(4px);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 140px;
+    z-index: 1000;
+    pointer-events: auto; 
+}
+
+.etiqueta-movimientos {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.contador-clics {
+    font-size: 2rem;
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+    color: #00ffcc;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+}
+
 #marcador-j1 {
     left: 20%;
     border: 2px solid #ff0055;

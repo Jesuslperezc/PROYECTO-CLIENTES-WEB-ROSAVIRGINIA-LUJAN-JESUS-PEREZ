@@ -87,39 +87,44 @@
         <div id="robot-streak" class="streak-container oculto">
         <img src="" alt="Robot Frenético" class="robot-frenetico">
         <h2 class="texto-racha"></h2>
-    </div>
-        <div class="contenedor-turno-central">
-            <h2 id="mensaje-turno" class="turno-j1">
-                <span class="etiqueta-turno">Turno de:</span>
-                <span id="nombre-apostador">Cargando...</span>
-            </h2>
         </div>
-        
-        <section id="dealer-zone" class="dealer-box">
-            <img id="dealer-img" src="" alt="Dealer Reacción">
-        </section>
-
-        <div id="memory-board" class="game-board"></div>
-        
-        <div class="game-hud">
+            <div class="contenedor-turno-central">
+                <h2 id="mensaje-turno" class="turno-j1">
+                    <span class="etiqueta-turno">Turno de:</span>
+                    <span id="nombre-apostador">Cargando...</span>
+                </h2>
+            </div>
             
-            <div class="marcador-hud" id="marcador-j1">
-                <span class="nombre-hud" id="hud-nombre-j1"></span>
-                <span class="puntos-hud" id="puntos-j1">0</span>
-            </div>
+            <section id="dealer-zone" class="dealer-box">
+                <img id="dealer-img" src="" alt="Dealer Reacción">
+            </section>
 
-            <div class="marcador-hud" id="marcador-j2">
-                <span class="nombre-hud" id="hud-nombre-j2"></span>
-                <span class="puntos-hud" id="puntos-j2">0</span>
-            </div>
+            <div id="memory-board" class="game-board"></div>
+            
+            <div class="game-hud">
+                <div class="marcador-clics">
+                    <span>Clicks Totales: </span>
+                    <span id="contador-clics">0</span>
+                </div>
+                
+                <div class="marcador-hud" id="marcador-j1">
+                    <span class="nombre-hud" id="hud-nombre-j1"></span>
+                    <span class="puntos-hud" id="puntos-j1">0</span>
+                </div>
 
-            <div class="timer">
-                <p>Tiempo restante: <span id="timer">00:00</span> segundos</p>
-            </div>
+                <div class="marcador-hud" id="marcador-j2">
+                    <span class="nombre-hud" id="hud-nombre-j2"></span>
+                    <span class="puntos-hud" id="puntos-j2">0</span>
+                </div>
 
-            <button id="restart-button">Reiniciar Juego</button>
+                <div class="timer">
+                    <p>Tiempo restante: <span id="timer">00:00</span> segundos</p>
+                </div>
+
+                <button id="restart-button">Reiniciar Juego</button>
+            </div>
         </div>
-    </main>
+     </main>
 
 
 </body>
