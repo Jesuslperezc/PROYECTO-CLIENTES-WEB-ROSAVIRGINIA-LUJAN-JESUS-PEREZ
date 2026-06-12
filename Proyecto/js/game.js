@@ -172,7 +172,6 @@ function verificarVictoriaSolitario() {
 function verificarVictoriaMultijugador() {
     const todasLasCartas = document.querySelectorAll(".carta");
     const cartasAcertadas = document.querySelectorAll(".carta.acertada");
-
    
     if (todasLasCartas.length > 0 && todasLasCartas.length === cartasAcertadas.length) {
         
@@ -182,7 +181,6 @@ function verificarVictoriaMultijugador() {
         if (typeof detenerTemporizador === "function") {
             detenerTemporizador();
         }
-
         if (JuegoCasino.puntosJ1 > JuegoCasino.puntosJ2) {
             console.log(`El ganador es ${JuegoCasino.nombreJ1} con ${JuegoCasino.puntosJ1} puntos.`);
             if (typeof mostrarPantallaFin === "function") mostrarPantallaFin("victoria_multijugador");

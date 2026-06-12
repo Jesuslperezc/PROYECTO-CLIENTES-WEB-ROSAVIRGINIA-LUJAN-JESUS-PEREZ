@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded",() => {
         });
     }
 
-
     botonRegresar.forEach(boton => {
         boton.addEventListener("click", (evento) => {
             console.log("Regresando al menú principal");

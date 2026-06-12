@@ -28,6 +28,10 @@ function iniciarTemporizador() {
             }
         }, 1000);
 
+        if (JuegoCasino.modo === "sin-reloj"){
+            document.getElementById("timer").classList.add("oculto");
+        }
+
     } else if (JuegoCasino.modo === "multijugador") {
         // Modo multijugador, cronometro ascendente
         tiempoRestante = 0; 

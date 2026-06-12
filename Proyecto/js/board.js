@@ -25,8 +25,6 @@ function inicializarTablero() {
 
     console.log(` [board.js] Generando el tablero para la dificultad: ${JuegoCasino.dificultad}`);
     let dimension = 4;
-
-
     if (JuegoCasino.dificultad === "medium") {
         dimension = 6;
 

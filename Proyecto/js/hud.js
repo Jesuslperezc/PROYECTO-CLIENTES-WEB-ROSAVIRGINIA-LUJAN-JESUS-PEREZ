@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const input2 = document.getElementById("input-j2");
             if (input1) input1.value = "";
             if (input2) input2.value = "";
-            
             const contenedorNombres = document.getElementById("inputs-nombres");
             if (contenedorNombres) contenedorNombres.classList.add("oculto");
 

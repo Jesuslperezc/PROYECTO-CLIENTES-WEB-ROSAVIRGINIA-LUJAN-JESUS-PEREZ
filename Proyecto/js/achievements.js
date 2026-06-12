@@ -48,8 +48,6 @@ const LOGROS_CASINO = [
         descripcion: "Consigue un empate en el modo multijugador.",
         desbloqueado: false
     }
-
-
 ];
 
 function verificarLogro(idLogro) {

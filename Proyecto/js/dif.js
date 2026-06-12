@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Dificultad seleccionada:", JuegoCasino.dificultad);
                 document.getElementById("selection-menu").classList.add("oculto");
                 document.getElementById("game-container").classList.remove("oculto");
+                
                 if (typeof inicializarTablero === "function") {
                 inicializarTablero(); 
             }
