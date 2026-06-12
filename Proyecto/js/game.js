@@ -177,9 +177,11 @@ function verificarVictoriaSolitario() {
             }
 
         }
-        if (typeof mostrarPantallaFin === "function") {
+        setTimeout(()=>{
+            if (typeof mostrarPantallaFin === "function") {
             mostrarPantallaFin("victoria_solitario");
-        }
+            }
+        },3500);
     }
 }
 
@@ -195,6 +197,7 @@ function verificarVictoriaMultijugador() {
         if (typeof detenerTemporizador === "function") {
             detenerTemporizador();
         }
+        setTimeout(()=>{
         if (JuegoCasino.puntosJ1 > JuegoCasino.puntosJ2) {
             console.log(`El ganador es ${JuegoCasino.nombreJ1} con ${JuegoCasino.puntosJ1} puntos.`);
             if (typeof mostrarPantallaFin === "function") mostrarPantallaFin("victoria_multijugador");
@@ -206,6 +209,8 @@ function verificarVictoriaMultijugador() {
             verificarLogro("empate_epico");
             if (typeof mostrarPantallaFin === "function") mostrarPantallaFin("victoria_multijugador");
         }
+        },3500);
+
     }
 }
 
