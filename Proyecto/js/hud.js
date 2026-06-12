@@ -17,7 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 JuegoCasino.turno = 1;
                 JuegoCasino.tiempoAgotado = false;
                 JuegoCasino.modo = null; 
+                JuegoCasino.clicsGenerales=0;
             }
+            const visorClics=document.getElementById("contador-clics");
+            if (visorClics) visorClics.textContent = "0";
+
             if (typeof actualizarInterfaz === "function") {
                 actualizarInterfaz();
             }
