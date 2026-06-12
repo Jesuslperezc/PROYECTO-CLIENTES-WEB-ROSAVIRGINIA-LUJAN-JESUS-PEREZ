@@ -29,6 +29,12 @@ function iniciarTemporizador() {
         }, 1000);
 
         if (JuegoCasino.modo === "sin-reloj"){
+            tiempoRestante = 0; 
+            actualizarInterfazTimer(tiempoRestante);
+            intervaloTemporizador = setInterval(() => {
+            tiempoRestante++; 
+            actualizarInterfazTimer(tiempoRestante);
+            }, 1000);
             document.getElementById("timer").classList.add("oculto");
         }
 
