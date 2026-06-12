@@ -132,12 +132,12 @@ body[data-theme="mundial"] {
     filter: drop-shadow(0 0 15px rgba(157, 0, 255, 0.55));
 }
 body[data-theme="playa"] .menu-robot-container {
-    width: 440px;         /* Reducimos el contenedor para achicar al robot proporcionalmente */
+    width: 440px;         
     height: 80vh;
     animation: flotarRobot 2s ease-in-out infinite; /* Mantiene el ritmo suave */
 }
 body[data-theme="mundial"] .menu-robot-container {
-    width: 440px;         /* Reducimos el contenedor para achicar al robot proporcionalmente */
+    width: 440px;       
     height: 70vh;
     animation: flotarRobot 2s ease-in-out infinite; /* Mantiene el ritmo suave */
 }
@@ -515,36 +515,49 @@ body[data-theme="mundial"] .menu-robot-container {
     transition: background 0.5s ease-in-out;
 }
 
-.game-board {
+.game-board, #memory-board {
     position: absolute;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
     gap: 6px; 
     width: 46vh;   
     height: 61vh;  
     box-sizing: border-box;
-    position: absolute;
     top: 56%;   
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
+    perspective: 1000px; /* Asegura el efecto 3D en PC */
 }
 
-/* Columnas */
-.game-board[data-dimension="4"] {
+/* Manejo de filas y columnas en PC según la dificultad */
+.game-board[data-dimension="4"], #memory-board[data-dimension="4"] {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, 1fr);
 }
-.game-board[data-dimension="6"] {
+.game-board[data-dimension="6"], #memory-board[data-dimension="6"] {
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(6, 1fr);
 }
-.game-board[data-dimension="8"] {
+.game-board[data-dimension="8"], #memory-board[data-dimension="8"] {
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
 }
+@media (max-width: 480px) and (orientation: portrait) {
+    .game-container {
+        height: 100vh; /* En celular el contenedor ocupa todo el alto vertical */
+        background-size: cover !important; /* El tapete se adapta al fondo móvil */
+    }
 
+    .game-board, #memory-board {
+        /* Rompemos las medidas fijas en 'vh' que lo aplastaban en mobile */
+        width: 95vw;   
+        height: auto;  
+        aspect-ratio: 1 / 1; /* Hacemos el tablero perfectamente cuadrado en el tlf */
+        top: 50%; /* Centrado perfecto en la pantalla del celular */
+        gap: 4px; /* Reducimos el espacio entre cartas para que quepan nítido */
+        grid-template-rows: unset !important; /* Dejamos que el CSS calcule las filas según el alto disponible */
+    }
+}
 #dealer-zone {
     display: none !important;
 }
