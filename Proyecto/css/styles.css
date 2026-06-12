@@ -542,22 +542,7 @@ body[data-theme="mundial"] .menu-robot-container {
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
 }
-@media (max-width: 480px) and (orientation: portrait) {
-    .game-container {
-        height: 100vh; /* En celular el contenedor ocupa todo el alto vertical */
-        background-size: cover !important; /* El tapete se adapta al fondo móvil */
-    }
 
-    .game-board, #memory-board {
-        /* Rompemos las medidas fijas en 'vh' que lo aplastaban en mobile */
-        width: 95vw;   
-        height: auto;  
-        aspect-ratio: 1 / 1; /* Hacemos el tablero perfectamente cuadrado en el tlf */
-        top: 50%; /* Centrado perfecto en la pantalla del celular */
-        gap: 4px; /* Reducimos el espacio entre cartas para que quepan nítido */
-        grid-template-rows: unset !important; /* Dejamos que el CSS calcule las filas según el alto disponible */
-    }
-}
 #dealer-zone {
     display: none !important;
 }
@@ -1094,4 +1079,205 @@ filter: drop-shadow(0 0 20px #9d00ff);
 .resaltado-clics-derrota {
     color: #ff3333 !important;
     text-shadow: 0 0 8px rgba(255, 51, 51, 0.4);
+}
+
+/* ==========================================================================
+   PARCHE DE RETROCOMPATIBILIDAD ULTRA-RESPONSIVE PARA TELÉFONOS
+   ========================================================================== */
+@media (max-width: 480px) and (orientation: portrait) {
+    /* 1. Forzamos al contenedor a ocupar toda la pantalla del teléfono */
+    .game-container {
+        height: 100vh !important;
+        width: 100vw !important;
+        max-height: 100vh !important;
+        background-size: cover !important; /* El tapete se estira para cubrir el fondo móvil */
+    }
+
+    /* 2. Rediseñamos el HUD de los Apostadores para que quepan arriba en paralelo */
+    #marcador-j1, #marcador-j2 {
+        top: 25px !important; /* Los subimos al tope */
+        transform: none !important;
+        min-width: 95px !important;
+        padding: 6px 10px !important;
+    }
+    
+    #marcador-j1 { left: 4% !important; }
+    #marcador-j2 { right: 4% !important; }
+
+    .nombre-hud { font-size: 0.75rem !important; }
+    .puntos-hud { font-size: 1.4rem !important; }
+
+    /* 3. El Timer y los Movimientos se compactan arriba al centro */
+    .game-hud .timer {
+        top: 22px !important;
+    }
+    #timer {
+        font-size: 2.2rem !important;
+    }
+
+    .marcador-clics {
+        top: 85px !important;
+        left: 50% !important;
+        right: unset !important;
+        transform: translateX(-50%) !important;
+        min-width: 120px !important;
+        padding: 4px 12px !important;
+        border-radius: 6px !important;
+    }
+    .etiqueta-movimientos { font-size: 0.7rem !important; }
+    .contador-clics { font-size: 1.3rem !important; }
+
+    /* El mensaje de quién apuesta lo bajamos un pelo */
+    .contenedor-turno-central {
+        top: 145px !important;
+    }
+    #mensaje-turno { font-size: 1.1rem !important; }
+
+    /* 4. REUBICACIÓN DE BOTONES (Dejan de flotar feo y se van al fondo ordenados) */
+    #restart-button, .game-hud .boton-back {
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 85% !important;
+        max-width: 280px !important;
+        padding: 10px 0 !important;
+        font-size: 1rem !important;
+        text-align: center;
+        border-radius: 20px !important; /* Acabado premium redondeado */
+        height: 40px !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* El de Reiniciar Juego queda abajo del tablero */
+    #restart-button {
+        bottom: 85px !important;
+        background: #00ffcc !important;
+        color: #050508 !important; /* Texto oscuro para mejor contraste */
+    }
+
+    /* El de Volver al Menú se va al fondo del todo */
+    .game-hud .boton-back {
+        bottom: 30px !important;
+        background: transparent !important;
+        color: #00ffcc !important;
+        border: 2px solid #00ffcc !important;
+    }
+
+    /* 5. Escalar elementos de interfaz invasivos (como el robot de racha) */
+    .robot-frenetico {
+        width: 70vw !important;
+    }
+    .texto-racha {
+        font-size: 2.2rem !important;
+        letter-spacing: 2px;
+    }
+}
+/* ==========================================================================
+   COMPLEMENTO PARA LOS MENÚS (MAIN MENU, DIFICULTAD Y TEMAS) EN CELULAR
+   ========================================================================== */
+@media (max-width: 480px) and (orientation: portrait) {
+
+    /* --- MENU PRINCIPAL --- */
+    .main-menu {
+        justify-content: flex-start !important;
+        align-items: center !important;
+        overflow-y: auto !important; /* Por si acaso se requiere scroll */
+    }
+
+    /* La franja negra de arriba ahora es vertical y se adapta al tlf */
+    .menu-franja {
+        height: auto !important;
+        padding: 1.5rem 1rem !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        justify-content: center !important;
+    }
+
+    .main-menu h1 {
+        font-size: 1.6rem !important;
+        text-align: center !important;
+    }
+
+    /* Los botones del menú principal (Las imágenes de Jugar, Temas, etc.) */
+    .main-menu nav {
+        padding: 2rem 0 !important;
+        flex-direction: column !important; /* Se apilan uno abajo del otro */
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
+        width: 100% !important;
+    }
+
+    .main-menu nav ul {
+        flex-direction: column !important; /* Forzamos la lista vertical */
+        gap: 1.5rem !important;
+    }
+
+    /* Achicamos las imágenes de los botones para que quepan en el ancho del tlf */
+    .boton-menu img, .boton-menu-tema img {
+        width: 180px !important; 
+    }
+
+    /* EL ROBOT DEL MENÚ: Lo encogemos y lo mandamos al fondo para que no tape los botones */
+    .menu-robot-container, 
+    body[data-theme="playa"] .menu-robot-container, 
+    body[data-theme="mundial"] .menu-robot-container {
+        width: 260px !important;
+        height: auto !important;
+        bottom: 0 !important;
+        right: 50% !important;
+        transform: translateX(50%) !important; /* Lo centramos abajo */
+        opacity: 0.35 !important; /* Lo ponemos semi-transparente como marca de agua trasera */
+        z-index: 1 !important;
+    }
+
+
+    /* --- MENÚ DE SELECCIÓN DE DIFICULTAD Y TEMAS --- */
+    .selection-menu h2, .theme-menu h2 {
+        font-size: 1.6rem !important;
+        height: auto !important;
+        padding: 1.5rem 1rem !important;
+    }
+
+    /* El contenedor de las cartas de dificultad/temas pasa de fila a columna */
+    .selection-menu nav, .theme-grid {
+        height: auto !important;
+        padding: 2rem 0 !important;
+        transform: none !important;
+    }
+
+    .selection-menu nav ul {
+        flex-direction: column !important; /* Cartas una debajo de otra */
+        gap: 2rem !important;
+        transform: none !important;
+        align-items: center !important;
+    }
+
+    /* Achicamos las cartas de selección (Fácil, Medio, Difícil y los Robots de Tema) */
+    .boton-seleccion, .theme-menu .card-button {
+        width: 160px !important;
+        height: 233px !important; /* Mantiene la proporción original de tus cartas */
+    }
+
+    /* El botón de VOLVER en la dificultad (el último hijo absoluto que tenías) */
+    .selection-menu nav ul li:last-child {
+        position: relative !important;
+        bottom: unset !important;
+        left: unset !important;
+        transform: none !important;
+        margin-top: 1.5rem !important;
+    }
+
+    /* Estilizamos el botón BACK para que sea más cómodo de tocar en el tlf */
+    .boton-back, .theme-menu .boton-back {
+        padding: 0.8rem 2.5rem !important;
+        font-size: 1.1rem !important;
+        position: relative !important;
+        bottom: unset !important;
+        left: unset !important;
+        transform: none !important;
+        margin: 1.5rem auto 2rem auto !important;
+    }
 }
