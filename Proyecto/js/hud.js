@@ -2,6 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const botonReiniciar = document.getElementById("restart-button");
     if (botonReiniciar) {
         botonReiniciar.addEventListener("click", () => {
+            if (typeof JuegoCasino !== "undefined") {
+                JuegoCasino.puntosJ1 = 0;
+                JuegoCasino.puntosJ2 = 0;
+                JuegoCasino.rachaActual = 0;
+                JuegoCasino.turno = 1;
+                JuegoCasino.tiempoAgotado = false;
+            }
             if (typeof inicializarTablero === "function") {
                 inicializarTablero();
             }
@@ -10,6 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             if (typeof iniciarTemporizador === "function") {
                 iniciarTemporizador();
+            }
+            if (typeof actualizarInterfaz === "function") {
+                actualizarInterfaz();
             }
         });
     }

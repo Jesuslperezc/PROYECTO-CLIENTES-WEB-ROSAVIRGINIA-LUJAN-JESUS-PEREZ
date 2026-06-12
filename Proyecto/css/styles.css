@@ -505,7 +505,7 @@ html, body {
 
 .game-hud .timer {
     position: absolute;
-    top: 90px;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
     font-size: 0;
@@ -517,7 +517,6 @@ html, body {
 #timer {
     font-size: 3.5rem; 
     color: #ffffff;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
     font-variant-numeric: tabular-nums; 
     display: inline-block;
     font-family: 'Luckiest Guy', cursive, sans-serif;
@@ -536,8 +535,8 @@ html, body {
     width: auto;
     padding: 1rem 2.2rem;
     font-family: 'Luckiest Guy', cursive, sans-serif;
-    background: transparent !important; 
-    color: #00ffcc; 
+    background: #00ffcc; 
+    color: #ffffff; 
     border: 2px solid #00ffcc;
     font-size: 1.2rem;
     border-radius: 8px;
@@ -573,13 +572,17 @@ html, body {
 }
 
 #marcador-j1 {
-    left: 3%;
+    left: 20%;
     border: 2px solid #ff0055;
+    top: 50%;
+    box-shadow: 0 0 15px #ff0055;
 }
 
 #marcador-j2 {
-    right: 3%;
+    right: 20%;
     border: 2px solid #0055ff;
+    top: 50%;
+    box-shadow: 0 0 15px #0055ff;
 }
 
 .nombre-hud {

@@ -97,7 +97,7 @@ function desactivarCartas() {
     primeraCarta.classList.add("acertada");
     segundaCarta.classList.add("acertada");
 
-    if (JuegoCasino.modo === "solitario") {
+    if (JuegoCasino.modo === "solitario" || JuegoCasino.modo === "sin-reloj") {
         verificarVictoriaSolitario();
     }
     if (JuegoCasino.modo === "multijugador") {
@@ -125,6 +125,7 @@ function resetearTurno() {
 function verificarVictoriaSolitario() {
     const todasLasCartas = document.querySelectorAll(".carta");
     const cartasAcertadas = document.querySelectorAll(".carta.acertada");
+
     if (todasLasCartas.length > 0 && todasLasCartas.length === cartasAcertadas.length) {
         console.log("¡Felicidades! Has encontrado todas las parejas.");
         bloqueado = true;
@@ -161,6 +162,7 @@ function verificarVictoriaMultijugador() {
         }
     }
 }
+
 function mostrarStreak(racha) {
     // 1. Corregido el selector con el punto (.) para capturar la clase CSS
     const contenedorStreak = document.getElementById("robot-streak");

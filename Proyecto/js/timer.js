@@ -1,41 +1,43 @@
 let intervaloTemporizador = null;
 let tiempoRestante = 0;
 
-/* Logica de cronometro en modo solitario */
+/* Logica de cronometro */
 function iniciarTemporizador() {
     detenerTemporizador();
-    const elementoHUDTimer = document.getElementById("timer").parentElement;
-
-    if (JuegoCasino.modo === "sin-reloj") {
-        if (elementoHUDTimer) elementoHUDTimer.style.display = "none";
-        return;
-    }
-
-    // Por ahora, si no es solitario no se aplica
-    if (JuegoCasino.modo !== "solitario") {
-        return;
-    }
+    
+    const elementoHUDTimer = document.getElementById("timer") ? document.getElementById("timer").parentElement : null;
 
     if (elementoHUDTimer) elementoHUDTimer.style.display = "block";
-
-    // Tiempos del modo solitario
+    if (JuegoCasino.modo === "solitario") {
+    // Tiempos del modo solitario, cronometro descendente    
     if (JuegoCasino.dificultad === "easy") {
-        tiempoRestante = 90; 
-    } else if (JuegoCasino.dificultad === "medium") {
-        tiempoRestante = 180;
-    } else if (JuegoCasino.dificultad === "hard") {
-        tiempoRestante = 300;
-    }
-    actualizarInterfazTimer();
-
-    intervaloTemporizador = setInterval(() => {
-        tiempoRestante--;
-        actualizarInterfazTimer();
-        if (tiempoRestante <= 0) {
-            detenerTemporizador();
-            finalizarPartidaPorTiempo();
+            tiempoRestante = 90; 
+        } else if (JuegoCasino.dificultad === "medium") {
+            tiempoRestante = 180;
+        } else if (JuegoCasino.dificultad === "hard") {
+            tiempoRestante = 300;
         }
-    }, 1000);
+        actualizarInterfazTimer(tiempoRestante);
+
+        intervaloTemporizador = setInterval(() => {
+            tiempoRestante--;
+            actualizarInterfazTimer(tiempoRestante);
+            if (tiempoRestante <= 0) {
+                detenerTemporizador();
+                finalizarPartidaPorTiempo();
+            }
+        }, 1000);
+
+    } else if (JuegoCasino.modo === "multijugador" || JuegoCasino.modo === "sin-reloj") {
+        // Modo multijugador y sin reloj, cronometro ascendente
+        tiempoRestante = 0; 
+        actualizarInterfazTimer(tiempoRestante);
+
+        intervaloTemporizador = setInterval(() => {
+            tiempoRestante++; 
+            actualizarInterfazTimer(tiempoRestante);
+        }, 1000);
+    }
 }
 
 function detenerTemporizador() {
