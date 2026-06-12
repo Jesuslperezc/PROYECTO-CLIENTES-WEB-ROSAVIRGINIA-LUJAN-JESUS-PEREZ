@@ -23,12 +23,14 @@ function mostrarPantallaFin(tipoVictoria) {
     let mensaje = "¡Has completado el tablero con éxito!";
     let datosHTML = "";
 
+    const clicsTotales = JuegoCasino.clicsGenerales || 0;
+
     if (tipoVictoria === "victoria_multijugador" || JuegoCasino.modo === "multijugador") {
         const nombreJ1 = JuegoCasino.nombreJ1 || "Apostador 1";
         const nombreJ2 = JuegoCasino.nombreJ2 || "Apostador 2";
         if (JuegoCasino.puntosJ1 > JuegoCasino.puntosJ2) {
             titulo = "¡TENEMOS UN GANADOR!";
-            mensaje = `Felicidades <strong>${nombreJ1}</strong>, has ganado la mesa de juego.`;
+            message = `Felicidades <strong>${nombreJ1}</strong>, has ganado la mesa de juego.`;
         } else if (JuegoCasino.puntosJ2 > JuegoCasino.puntosJ1) {
             titulo = "¡TENEMOS UN GANADOR!";
             mensaje = `Felicidades <strong>${nombreJ2}</strong>, has ganado la mesa de juego.`;
@@ -58,7 +60,7 @@ function mostrarPantallaFin(tipoVictoria) {
             
             <div class="detalles-fin">
                 <p>Tiempo de juego: <strong>${tiempoTexto}</strong></p>
-                ${datosHTML}
+                <p>Clics realizados: <strong class="resaltado-clics">${clicsTotales}</strong></p> ${datosHTML}
             </div>
 
             <button id="btn-salir-fin" class="boton-fin-menu">Volver al menú principal</button>
@@ -73,6 +75,7 @@ function mostrarPantallaFin(tipoVictoria) {
             JuegoCasino.puntosJ1 = 0;
             JuegoCasino.puntosJ2 = 0;
             JuegoCasino.rachaActual = 0;
+            JuegoCasino.clicsGenerales = 0;
             JuegoCasino.nombreJ1 = "";
             JuegoCasino.nombreJ2 = "";
             JuegoCasino.turno = 1;
@@ -82,6 +85,9 @@ function mostrarPantallaFin(tipoVictoria) {
         if (typeof actualizarInterfaz === "function") {
             actualizarInterfaz();
         }
+
+        const visorClics = document.getElementById("contador-clics");
+        if (visorClics) visorClics.textContent = "0";
 
         const input1 = document.getElementById("input-j1");
         const input2 = document.getElementById("input-j2");
@@ -102,6 +108,7 @@ function mostrarPantallaDerrotaTiempo() {
     modalDerrota.className = "modal-fin-partida modal-derrota";
     modalDerrota.id = "game-over-modal";
     const parejasAcertadas = JuegoCasino.puntosJ1 || 0;
+    const clicsTotales = JuegoCasino.clicsGenerales || 0;
 
     modalDerrota.innerHTML = `
         <div class="contenido-modal-fin">
@@ -110,6 +117,7 @@ function mostrarPantallaDerrotaTiempo() {
             
             <div class="detalles-fin detalles-derrota">
                 <p>Parejas encontradas: <strong>${parejasAcertadas}</strong></p>
+                <p>Clics realizados: <strong class="resaltado-clics-derrota">${clicsTotales}</strong></p> 
                 <p>Estado de la banca: <strong>Bancarrota</strong></p>
             </div>
 
@@ -125,6 +133,7 @@ function mostrarPantallaDerrotaTiempo() {
             JuegoCasino.puntosJ1 = 0;
             JuegoCasino.puntosJ2 = 0;
             JuegoCasino.rachaActual = 0;
+            JuegoCasino.clicsGenerales = 0;
             JuegoCasino.nombreJ1 = "";
             JuegoCasino.nombreJ2 = "";
             JuegoCasino.turno = 1;
@@ -134,6 +143,8 @@ function mostrarPantallaDerrotaTiempo() {
         if (typeof actualizarInterfaz === "function") {
             actualizarInterfaz();
         }
+        const visorClics = document.getElementById("contador-clics");
+        if (visorClics) visorClics.textContent = "0";
 
         const input1 = document.getElementById("input-j1");
         const input2 = document.getElementById("input-j2");
