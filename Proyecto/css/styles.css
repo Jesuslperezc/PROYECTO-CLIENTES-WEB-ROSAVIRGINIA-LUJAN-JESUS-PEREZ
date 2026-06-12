@@ -529,9 +529,9 @@ html, body {
 }
 
 #restart-button {
-    position: absolute;
-    bottom: 35px;
-    left: 35px;
+    position: absolute !important;
+    bottom: 20%;
+    left: 6%;
     width: auto;
     padding: 1rem 2.2rem;
     font-family: 'Luckiest Guy', cursive, sans-serif;
@@ -555,6 +555,25 @@ html, body {
 
 #restart-button:active {
     transform: translateY(1px);
+}
+
+.game-hud .boton-back {
+    position: absolute !important;
+    bottom: 10%;
+    left: 6%;
+    width: auto;
+    padding: 1rem 2.2rem;
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+    background: #00ffcc; 
+    color: #ffffff; 
+    border: 2px solid #00ffcc;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    z-index: 1000;
 }
 
 .marcador-hud {
@@ -658,7 +677,7 @@ html, body {
     pointer-events: none; 
 }
 
-/* La imagen del Robot con animación violenta */
+/* Imagen del robot con animación */
 .robot-frenetico {
     width: 450px;
     height: auto;
@@ -666,7 +685,7 @@ html, body {
     animation: aparecerSusto 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, sacudidaFrenetica 0.1s infinite alternate;
 }
 
-/* Texto gigante neón abajo del robot */
+/* Texto neón abajo del robot */
 .texto-racha {
     font-family: 'Luckiest Guy', cursive, sans-serif;
     font-size: 4rem;
@@ -678,7 +697,7 @@ html, body {
     animation: aparecerSusto 0.2s ease forwards;
 }
 
-/* --- ANIMACIONES --- */
+/* Animaciones */
 @keyframes aparecerSusto {
     0% { transform: scale(0.3); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
