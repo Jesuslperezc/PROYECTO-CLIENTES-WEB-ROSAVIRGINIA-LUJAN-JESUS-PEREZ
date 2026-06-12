@@ -2,15 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const gameHud = document.querySelector(".game-hud");
     if (gameHud) {
 
-        const contenedorMovimientos = document.createElement("div");
-        contenedorMovimientos.id = "contador-movimientos-hud";
-        contenedorMovimientos.className = "movimientos-hud";
-        contenedorMovimientos.innerHTML = `
-            <span class="etiqueta-movimientos">Movimientos</span>
-            <span id="num-movimientos" class="num-movimientos">0</span>
-        `;
-        gameHud.appendChild(contenedorMovimientos);
-
         const botonVolverHUD = document.createElement("button");
         botonVolverHUD.className = "boton-back boton-back-hud"; 
         botonVolverHUD.textContent = "Volver al menú principal";
@@ -26,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 JuegoCasino.turno = 1;
                 JuegoCasino.tiempoAgotado = false;
                 JuegoCasino.modo = null; 
-                JuegoCasino.movimientos = 0;
             }
             if (typeof actualizarInterfaz === "function") {
                 actualizarInterfaz();
@@ -62,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 JuegoCasino.tiempoAgotado = false;
                 JuegoCasino.nombreJ1 = "";
                 JuegoCasino.nombreJ2 = "";
-                JuegoCasino.movimientos = 0;
             }
             if (typeof inicializarTablero === "function") {
                 inicializarTablero();
@@ -93,11 +82,6 @@ function actualizarInterfaz() {
     const hud_J2 = document.getElementById("hud-nombre-j2");
     const ptsJ1 = document.getElementById("puntos-j1");
     const ptsJ2 = document.getElementById("puntos-j2");
-
-    const numMovimientos = document.getElementById("num-movimientos");
-    if (txtMovimientos && typeof JuegoCasino !== "undefined") {
-        txtMovimientos.textContent = JuegoCasino.movimientos;
-    }
 
     if (JuegoCasino.modo !== "multijugador") {
         if (contenedorTurno) contenedorTurno.classList.add("oculto");

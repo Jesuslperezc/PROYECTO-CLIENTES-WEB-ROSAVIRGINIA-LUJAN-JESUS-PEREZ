@@ -47,14 +47,6 @@ function voltearCarta(carta) {
     verificarPareja();
 }
 function verificarPareja() {
-    if (typeof JuegoCasino !== "undefined") {
-        JuegoCasino.movimientos++;
-        console.log("[game.js] Movimiento sumado en verificarPareja. Total:", JuegoCasino.movimientos);
-        const txtMovimientosManual = document.getElementById("num-movimientos");
-        if (txtMovimientosManual) {
-            txtMovimientosManual.textContent = JuegoCasino.movimientos;
-        }
-    }
     const esPareja = primeraCarta.dataset.id === segundaCarta.dataset.id;
 
     if (esPareja) {
