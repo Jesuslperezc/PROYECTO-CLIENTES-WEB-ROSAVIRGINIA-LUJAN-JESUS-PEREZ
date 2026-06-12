@@ -7,12 +7,19 @@ const baseDeRachas = [ "./assets/robot_base_2.png","./assets/robot_racha_2.png",
 
 function activarLogicaDeJuego() {
     const tablero = document.getElementById("memory-board");
+    const visorClics= document.getElementById("contador-clics");
+ 
     if (!tablero) return;
     
     console.log("[game.js] Lógica de juego activada. Escuchando clics en el tablero...");
+    if (JuegoCasino.clicsGenerales === undefined) {
+        JuegoCasino.clicsGenerales = 0;
+    }
     if (JuegoCasino.tiempoAgotado === undefined) {
         JuegoCasino.tiempoAgotado = false; 
+
     }
+ 
     tablero.addEventListener("click", function(evento) {
         if (bloqueado) return;
 
@@ -26,6 +33,13 @@ function activarLogicaDeJuego() {
 
         if (!cartaSeleccionada || cartaSeleccionada.classList.contains("volteada")) return;
         if (cartaSeleccionada === primeraCarta) return;
+        if (visorClics) {
+            JuegoCasino.clicsGenerales++;
+            visorClics.textContent = JuegoCasino.clicsGenerales;
+        }
+        console.log(`[Clics Totales]: ${JuegoCasino.clicsGenerales}`);
+        
+
 
 
         voltearCarta(cartaSeleccionada);
@@ -59,6 +73,7 @@ function verificarPareja() {
         if(JuegoCasino.rachaActual%3===0||JuegoCasino.rachaActual===2){
             mostrarStreak(JuegoCasino.rachaActual);
         }
+      
 
 
        
@@ -74,6 +89,7 @@ function verificarPareja() {
         } else {
             console.log("Modo un jugador: Pareja acertada.");
             JuegoCasino.puntosJ1++;
+            actualizarInterfaz();
             
             console.log(`Puntos del Jugador 1: ${JuegoCasino.puntosJ1}`);
         }
@@ -224,10 +240,8 @@ function mostrarStreak(racha) {
         if (textoStreak) textoStreak.textContent = "¡ERES EL GOAT! ";
     }
 
-    // 3. Activamos el overlay quitando la clase oculto
     contenedorStreak.classList.remove("oculto");
 
-    // 4. Temporizador para esconder el elemento después de 1.5 segundos
     setTimeout(() => {
         contenedorStreak.classList.add("oculto");
     }, 1500); 
