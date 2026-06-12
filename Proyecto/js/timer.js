@@ -28,15 +28,14 @@ function iniciarTemporizador() {
             }
         }, 1000);
 
-        if (JuegoCasino.modo === "sin-reloj"){
-            tiempoRestante = 0; 
-            actualizarInterfazTimer(tiempoRestante);
-            intervaloTemporizador = setInterval(() => {
+    } else if (JuegoCasino.modo === "sin-reloj") {
+        if (elementoHUDTimer) elementoHUDTimer.style.display = "none";
+        tiempoRestante = 0; 
+        actualizarInterfazTimer();
+        intervaloTemporizador = setInterval(() => {
             tiempoRestante++; 
-            actualizarInterfazTimer(tiempoRestante);
-            }, 1000);
-            document.getElementById("timer").classList.add("oculto");
-        }
+            actualizarInterfazTimer(); 
+        }, 1000);
 
     } else if (JuegoCasino.modo === "multijugador") {
         // Modo multijugador, cronometro ascendente
@@ -73,8 +72,6 @@ function finalizarPartidaPorTiempo() {
     console.log("¡Tiempo agotado! No lograste encontrar todas las parejas a tiempo.");
     
     bloqueado = true; 
-
-
     const cartasVolteadas = document.querySelectorAll(".carta.volteada"); 
     cartasVolteadas.forEach(carta => {
         carta.classList.remove("volteada"); 
@@ -83,4 +80,8 @@ function finalizarPartidaPorTiempo() {
     primeraCarta = null;
     segundaCarta = null;
     console.log("El juego se ha bloqueado. Puedes reiniciar para intentarlo de nuevo.");
+
+    if (typeof mostrarPantallaDerrotaTiempo === "function") {
+        mostrarPantallaDerrotaTiempo();
+    }
 }

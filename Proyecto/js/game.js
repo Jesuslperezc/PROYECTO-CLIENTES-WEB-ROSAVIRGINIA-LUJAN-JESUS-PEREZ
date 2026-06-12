@@ -150,8 +150,6 @@ function verificarVictoriaSolitario() {
         } else if (JuegoCasino.dificultad === "hard") {
             tiempoInicial = 300;
         }
-
-       
         const tiempoTranscurrido = tiempoInicial - tiempoRestante;
 
         if (tiempoTranscurrido < 60) {
@@ -164,10 +162,11 @@ function verificarVictoriaSolitario() {
             }
 
         }
-
+        if (typeof mostrarPantallaFin === "function") {
+            mostrarPantallaFin("victoria_solitario");
+        }
     }
 }
-
 
 function verificarVictoriaMultijugador() {
     const todasLasCartas = document.querySelectorAll(".carta");
