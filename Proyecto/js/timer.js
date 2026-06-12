@@ -6,7 +6,7 @@ function iniciarTemporizador() {
     detenerTemporizador();
     
     const elementoHUDTimer = document.getElementById("timer") ? document.getElementById("timer").parentElement : null;
-
+    
     if (elementoHUDTimer) elementoHUDTimer.style.display = "block";
     if (JuegoCasino.modo === "solitario") {
     // Tiempos del modo solitario, cronometro descendente    
@@ -28,8 +28,8 @@ function iniciarTemporizador() {
             }
         }, 1000);
 
-    } else if (JuegoCasino.modo === "multijugador" || JuegoCasino.modo === "sin-reloj") {
-        // Modo multijugador y sin reloj, cronometro ascendente
+    } else if (JuegoCasino.modo === "multijugador") {
+        // Modo multijugador, cronometro ascendente
         tiempoRestante = 0; 
         actualizarInterfazTimer(tiempoRestante);
 
