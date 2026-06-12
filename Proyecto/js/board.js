@@ -1,9 +1,20 @@
+function obtenerBaseDeCartasPorTema() {
+    const temaActivo = localStorage.getItem("casino-theme-preference") || "clasico";
+    let subcarpeta = "cartas"; 
+    
+    if (temaActivo === "playa") {
+        subcarpeta = "cartas_playa";
+    } else if (temaActivo === "mundial") {
+        subcarpeta = "cartas_mundial";
+    }
 
-const baseDeCartas = ["./assets/cartas/carta_1.png", "./assets/cartas/carta_2.png", "./assets/cartas/carta_3.png", "./assets/cartas/carta_4.png", "./assets/cartas/carta_5.png", "./assets/cartas/carta_6.png", "./assets/cartas/carta_7.png", "./assets/cartas/carta_8.png",
-    "./assets/cartas/carta_9.png", "./assets/cartas/carta_10.png", "./assets/cartas/carta_11.png", "./assets/cartas/carta_12.png", "./assets/cartas/carta_13.png", "./assets/cartas/carta_14.png", "./assets/cartas/carta_15.png", "./assets/cartas/carta_16.png"
-    ,"./assets/cartas/carta_17.png", "./assets/cartas/carta_18.png", "./assets/cartas/carta_19.png", "./assets/cartas/carta_20.png", "./assets/cartas/carta_21.png", "./assets/cartas/carta_22.png", "./assets/cartas/carta_23.png", "./assets/cartas/carta_24.png"
-    ,"./assets/cartas/carta_25.png", "./assets/cartas/carta_26.png", "./assets/cartas/carta_27.png", "./assets/cartas/carta_28.png", "./assets/cartas/carta_29.png", "./assets/cartas/carta_30.png", "./assets/cartas/carta_31.png", "./assets/cartas/carta_32.png"];
-
+    const cartasDinamicas = [];
+    for (let i = 1; i <= 32; i++) {
+        cartasDinamicas.push(`./assets/${subcarpeta}/carta_${i}.png`);
+    }
+    
+    return cartasDinamicas;
+}
 
 function barajar(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -35,7 +46,8 @@ function inicializarTablero() {
     const totalCartas = dimension * dimension;
     const cantidadParejas = totalCartas / 2;
 
-    let imagenesSeleccionadas = baseDeCartas.slice(0, cantidadParejas);
+    const baseDeCartasTematica = obtenerBaseDeCartasPorTema();
+    let imagenesSeleccionadas = baseDeCartasTematica.slice(0, cantidadParejas);
 
 
     let listaParejas = [...imagenesSeleccionadas, ...imagenesSeleccionadas];

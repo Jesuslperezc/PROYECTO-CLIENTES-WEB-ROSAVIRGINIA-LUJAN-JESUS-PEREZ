@@ -3,7 +3,6 @@ let segundaCarta = null;
 let bloqueado = false;
 
 
-const baseDeRachas = [ "./assets/robot_base_2.png","./assets/robot_racha_2.png","./assets/robot_racha_4.png","./assets/robot_racha_6.png"];
 
 function activarLogicaDeJuego() {
     const tablero = document.getElementById("memory-board");
@@ -219,24 +218,24 @@ function mostrarStreak(racha) {
     if (!contenedorStreak || !imgRobot) return;
 
 
+    const baseDeRachasTematica = obtenerBaseDeRachasPorTema();
 
     if (racha === 2) {
-        imgRobot.src = baseDeRachas[0]; // Primera imagen
+        imgRobot.src = baseDeRachasTematica[0]; // Primera imagen del tema
         if (textoStreak) textoStreak.textContent = "¡STREAK X2!";
     } 
     else if (racha === 3) {
-        imgRobot.src = baseDeRachas[1]; // Segunda imagen
+        imgRobot.src = baseDeRachasTematica[1]; // Segunda imagen del tema
         if (textoStreak) textoStreak.textContent = "¡STREAK X3!";
         verificarLogro("streak_fuego");
     } 
     else if (racha === 6) {
-        imgRobot.src = baseDeRachas[2]; // Tercera imagen
+        imgRobot.src = baseDeRachasTematica[2]; // Tercera imagen del tema
         if (textoStreak) textoStreak.textContent = "¡MAX STREAK! ";
         verificarLogro("imparable");
     } 
     else {
-        
-        imgRobot.src = baseDeRachas[3]; 
+        imgRobot.src = baseDeRachasTematica[3]; // Cuarta imagen del tema (GOAT)
         if (textoStreak) textoStreak.textContent = "¡ERES EL GOAT! ";
     }
 

@@ -15,7 +15,59 @@ html, body {
 .oculto {
     display: none !important;
 }
+/* --- TEMA CLÁSICO (Por defecto) --- */
+body, body[data-theme="clasico"] {
+    --color-pano: #0b6623;
+    --color-letras: #ffffff;
+    --detalles-oro: #f1c40f;
+    --fondo-marcador: #1c2833;
+    
+    --fondo-menu: url('../assets/fondo.png'); 
+    --fondo-seleccion: url('../assets/fondo.png'); 
+    --fondo-tablero: url('../assets/fondo_tablero.jpg');
 
+    /* CARTAS Y DIFICULTADES CLÁSICAS */
+    --carta-atras: url('../assets/carta_trasera.png');
+    --carta-facil: url('../assets/carta_facil.png');
+    --carta-medio: url('../assets/carta_medio.png');
+    --carta-dificil: url('../assets/carta_dificil.png');
+}
+
+/* --- TEMA PLAYA --- */
+body[data-theme="playa"] {
+    --color-pano: #00a8cc;
+    --color-letras: #ffffff;
+    --detalles-oro: #ffb347;
+    --fondo-marcador: #27496d;
+    
+    --fondo-menu: url('../assets/fondo_playa.jpg'); 
+    --fondo-seleccion: url('../assets/fondo_playa.jpg'); 
+    --fondo-tablero: url('../assets/fondo_tablero_playa.jpg');
+
+
+    --carta-atras: url('../assets/carta_trasera_playa.png');
+    --carta-facil: url('../assets/carta_playa_facil.png');
+    --carta-medio: url('../assets/carta_playa_medio.png');
+    --carta-dificil: url('../assets/carta_playa_dificil.png');
+}
+
+
+body[data-theme="mundial"] {
+    --color-pano: #1e824c;
+    --color-letras: #fae5d3;
+    --detalles-oro: #ffffff;
+    --fondo-marcador: #113f26;
+    
+    --fondo-menu: url('../assets/fondo_mund.jpg'); 
+    --fondo-seleccion: url('../assets/fondo_mund.jpg'); 
+    --fondo-tablero: url('../assets/fondo_tablero_mundial.jpg');
+
+
+    --carta-atras: url('../assets/carta_trasera_mundial.jpg');
+    --carta-facil: url('../assets/carta_mundial_facil.png');
+    --carta-medio: url('../assets/carta_mundial_medio.png');
+    --carta-dificil: url('../assets/carta_mundial_dificil.png');
+}
 /* Menu principal */
 .main-menu {
     position: relative;
@@ -25,11 +77,14 @@ html, body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    background: url('../assets/fondo.png') no-repeat center center;
+    background: var(--fondo-menu) no-repeat center center;
     background-size: cover;
     box-sizing: border-box;
-}
+    
+    /* Transición suave de 0.5 segundos para el cambio de fondo */
+    transition: background 0.5s ease-in-out;
 
+}
 .menu-franja {
     width: 100%;
     height: 100px;
@@ -75,6 +130,16 @@ html, body {
     height: auto;
     display: block;
     filter: drop-shadow(0 0 15px rgba(157, 0, 255, 0.55));
+}
+body[data-theme="playa"] .menu-robot-container {
+    width: 440px;         /* Reducimos el contenedor para achicar al robot proporcionalmente */
+    height: 80vh;
+    animation: flotarRobot 2s ease-in-out infinite; /* Mantiene el ritmo suave */
+}
+body[data-theme="mundial"] .menu-robot-container {
+    width: 440px;         /* Reducimos el contenedor para achicar al robot proporcionalmente */
+    height: 70vh;
+    animation: flotarRobot 2s ease-in-out infinite; /* Mantiene el ritmo suave */
 }
 
 @keyframes flotarRobot {
@@ -203,13 +268,14 @@ html, body {
     transform: rotateY(180deg);
 }
 .carta-atras {
-    background-image: url('../assets/carta_trasera.png');
+   background-image: var(--carta-atras); /* VARIABLE DINÁMICA */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-}
+    transition: background-image 0.3s ease-in-out; 
+}           
 
 .carta-atras, .carta-frente {
     position: absolute;
@@ -302,10 +368,11 @@ html, body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: url('../assets/fondo.png') no-repeat center center;
+   background: var(--fondo-seleccion) no-repeat center center; 
     background-size: cover;
     box-sizing: border-box;
     padding: 0;
+    transition: background 0.5s ease-in-out;
 }
 
 /* Estilo de subtitulo */
@@ -388,13 +455,13 @@ html, body {
 }
 
 #Facil {
-    background-image: url('../assets/carta_facil.png');
+    background-image: var(--carta-facil); 
 }
 #Medio {
-    background-image: url('../assets/carta_medio.png');
+    background-image: var(--carta-medio); 
 }
 #Dificil {
-    background-image: url('../assets/carta_dificil.png');
+    background-image: var(--carta-dificil); 
 }
 
 .boton-seleccion:hover {
@@ -436,7 +503,7 @@ html, body {
     width: 100vw;
     height: 56.25vw; 
     max-height: 100vh;
-    background: url('../assets/fondo_tablero.jpg') no-repeat center center !important;
+   background: var(--fondo-tablero) no-repeat center center !important; 
     background-size: contain !important; 
     display: flex;
     flex-direction: column;
@@ -445,6 +512,7 @@ html, body {
     box-sizing: border-box;
     overflow: hidden;
     z-index: 1;
+    transition: background 0.5s ease-in-out;
 }
 
 .game-board {
@@ -915,4 +983,93 @@ html, body {
     color: #0c0c12 !important;
     box-shadow: 0 0 22px rgba(255, 51, 51, 0.6) !important;
     transform: translateY(-2px);
+}
+/* Temas */
+.theme-menu {
+position: relative;
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+background: url('../assets/fondo.png') no-repeat center center;
+background-size: cover;
+box-sizing: border-box;
+padding: 0;
+}
+
+.theme-menu h2 {
+color: #ffffff; 
+font-size: 2.8rem;
+text-transform: uppercase;
+letter-spacing: 3px;
+margin: 0 0 0 0;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+text-align: center;
+width: 100%;
+height: 100px;
+background-color: rgba(10, 10, 14, 0.8);
+backdrop-filter: blur(6px);
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+font-family: 'Luckiest Guy', cursive, sans-serif;
+}
+
+.theme-grid {
+display: flex !important;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+gap: 3.5rem;
+width: 100%;
+height: calc(100vh - 220px);
+transform: translateY(-20px);
+}
+
+.theme-menu .card-button {
+    display: block;
+    width: 250px;      
+    height: 365px;     
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    background-color: transparent !important;
+    background-repeat: no-repeat;
+    background-position: center;    
+    background-size: contain;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
+}
+
+.theme-menu .card-button .card-img,
+.theme-menu .card-button .card-footer {
+    display: none !important;
+}
+
+.theme-menu .card-button[data-theme="clasico"] {
+    background-image: url('../assets/robot_mesa.png') !important; 
+}
+
+.theme-menu .card-button[data-theme="playa"] {
+    background-image: url('../assets/robot_mesa_p.png') !important;
+}
+
+.theme-menu .card-button[data-theme="mundial"] {
+    background-image: url('../assets/robot_mesa_f.png') !important;
+}
+
+.theme-menu .card-button:hover {
+transform: translateY(-12px) scale(1.02);
+filter: drop-shadow(0 0 20px #9d00ff);
+}
+
+.theme-menu .boton-back {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
 }
