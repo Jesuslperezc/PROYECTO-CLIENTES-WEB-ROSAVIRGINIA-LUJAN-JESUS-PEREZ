@@ -2365,164 +2365,106 @@ filter: drop-shadow(0 0 20px #9d00ff);
     text-shadow: 0 0 8px rgba(255, 51, 51, 0.4);
 }
 /* ==========================================================================
-   PARCHE RESPONSIVE UNIFICADO (PC SE QUEDA IGUAL, ADAPTABLE A CUALQUIER TELÉFONO)
+   CONFIGURACIÓN EXCLUSIVA PARA CELULARES EN HORIZONTAL (LANDSCAPE)
    ========================================================================== */
-@media (max-width: 900px) {
+@media (max-width: 932px) and (orientation: landscape) {
 
-    /* --- 1. CONTENEDORES GENERALES Y SCROLL --- */
-    .game-container {
-        height: 100vh !important;
-        width: 100vw !important;
-        max-height: 100vh !important;
-        background-size: cover !important;
-    }
-
-    .selection-menu, .theme-menu, .main-menu {
+    /* 1. CONTENEDOR PRINCIPAL: Activamos scroll vertical por si una pantalla es ultra chata */
+    .game-container, .selection-menu, .theme-menu, .main-menu {
         height: auto !important;
         min-height: 100vh !important;
-        overflow-y: auto !important; /* Permite scroll con el dedo si falta pantalla */
+        overflow-y: auto !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: flex-start !important;
         align-items: center !important;
     }
 
-    /* --- 2. SECCIÓN DEL TABLERO DE JUEGO (GAMEPLAY) --- */
-    /* HUD de los Apostadores arriba en paralelo */
-    #marcador-j1, #marcador-j2 {
-        top: 25px !important;
-        transform: none !important;
-        min-width: 95px !important;
-        padding: 6px 10px !important;
-    }
-    #marcador-j1 { left: 4% !important; }
-    #marcador-j2 { right: 4% !important; }
-    .nombre-hud { font-size: 0.75rem !important; }
-    .puntos-hud { font-size: 1.4rem !important; }
-
-    /* Timer y Clics al centro */
-    .game-hud .timer { top: 22px !important; }
-    #timer { font-size: 2.2rem !important; }
-
-    .marcador-clics {
-        top: 85px !important;
-        left: 50% !important;
-        right: unset !important;
-        transform: translateX(-50%) !important;
-        min-width: 120px !important;
-        padding: 4px 12px !important;
-    }
-    .etiqueta-movimientos { font-size: 0.7rem !important; }
-    .contador-clics { font-size: 1.3rem !important; }
-    .contenedor-turno-central { top: 145px !important; }
-    #mensaje-turno { font-size: 1.1rem !important; }
-
-    /* Botones de Control del Juego (Abajo del Tablero de Cartas) */
-    #restart-button, .game-hud .boton-back {
-        position: absolute !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 85% !important;
-        max-width: 280px !important;
-        padding: 10px 0 !important;
-        font-size: 1rem !important;
-        height: 40px !important;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        border-radius: 20px !important;
-    }
-    #restart-button {
-        bottom: 85px !important;
-        background: #00ffcc !important;
-        color: #050508 !important;
-    }
-    .game-hud .boton-back {
-        bottom: 30px !important;
-        background: transparent !important;
-        color: #00ffcc !important;
-        border: 2px solid #00ffcc !important;
-    }
-
-    /* Efectos visuales de racha escalados */
-    .robot-frenetico { width: 70vw !important; }
-    .texto-racha { font-size: 2.2rem !important; letter-spacing: 2px; }
-
-
-    /* --- 3. MENÚ PRINCIPAL --- */
-    .menu-franja {
-        height: auto !important;
-        padding: 1.5rem 1rem !important;
-        flex-direction: column !important;
-        gap: 10px !important;
-    }
-    .main-menu h1 { font-size: 1.6rem !important; text-align: center !important; }
-
-    .main-menu nav {
-        padding: 2rem 0 !important;
-        flex-direction: column !important;
-        gap: 1.5rem !important;
-        width: 100% !important;
-    }
-    .main-menu nav ul { flex-direction: column !important; gap: 1.5rem !important; }
-    .boton-menu img, .boton-menu-tema img { width: 180px !important; }
-
-    /* Robot de fondo como marca de agua trasera */
-    .menu-robot-container, 
-    body[data-theme="playa"] .menu-robot-container, 
-    body[data-theme="mundial"] .menu-robot-container {
-        width: 260px !important;
-        height: auto !important;
-        bottom: 0 !important;
-        right: 50% !important;
-        transform: translateX(50%) !important;
-        opacity: 0.35 !important;
-        z-index: 1 !important;
-    }
-
-
-    /* --- 4. MENÚS DE SELECCIÓN (DIFICULTAD Y TEMAS) --- */
-    .selection-menu h2, .theme-menu h2 {
-        font-size: 1.6rem !important;
-        height: auto !important;
-        padding: 1.5rem 1rem !important;
-        flex-shrink: 0 !important;
-    }
-
-    .selection-menu nav, .theme-grid {
-        height: auto !important;
-        padding: 1.5rem 0 !important;
-        transform: none !important;
-    }
-
-    .selection-menu nav ul {
+    /* 2. SOLUCCIÓN PARA EL TABLERO DE JUEGO (Capturas 1 y 2) */
+    /* El contenedor HUD ahora distribuirá los botones de forma fluida */
+    .game-hud {
         display: flex !important;
         flex-direction: row !important;
-        flex-wrap: wrap !important; /* Si se usa horizontal y no caben, saltan abajo */
         justify-content: center !important;
         align-items: center !important;
-        gap: 1.5rem !important;
-        width: 90% !important;
-        transform: none !important;
+        flex-wrap: wrap !important;
+        width: 100% !important;
+        padding-bottom: 20px !important;
+        margin-top: 15px !important;
     }
 
-    /* Tamaño compacto perfecto para las cartas neón */
-    .boton-seleccion, .theme-menu .card-button {
-        width: 130px !important;
-        height: 190px !important;
-        margin: 0 auto !important;
-    }
-
-    /* Reubicar botones de volver en los menús de selección */
-    .selection-menu nav ul li:last-child {
+    /* Reducimos y ordenamos los botones REINICIAR y VOLVER uno al lado del otro abajo de la mesa */
+    #restart-button, .game-hud .boton-back {
         position: relative !important;
         bottom: unset !important;
         left: unset !important;
         transform: none !important;
+        width: 180px !important; /* Tamaño compacto para que no tapen el tapete */
+        height: 38px !important;
+        font-size: 0.85rem !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 10px 8px !important;
+        border-radius: 10px !important;
+    }
+
+    /* Achicamos los marcadores de los apostadores para que limpien las cartas */
+    #marcador-j1, #marcador-j2 {
+        top: 8px !important;
+        padding: 4px 8px !important;
+        min-width: 80px !important;
+    }
+    #marcador-j1 { left: 2% !important; }
+    #marcador-j2 { right: 2% !important; }
+    
+    /* El Timer del centro más pequeño */
+    .game-hud .timer { top: 6px !important; }
+    #timer { font-size: 1.6rem !important; }
+    
+    /* El marcador de clics totales a la derecha para liberar espacio */
+    .marcador-clics { 
+        top: 8px !important; 
+        right: 15% !important; 
+        left: unset !important; 
+        transform: none !important;
+        padding: 4px 10px !important;
+    }
+
+
+    /* 3. SOLUCIÓN PARA EL MENÚ DE SELECCIÓN Y TEMAS (Captura 3) */
+    .selection-menu h2, .theme-menu h2 {
+        font-size: 1.3rem !important;
+        padding: 0.6rem !important;
+        margin: 5px 0 !important;
+    }
+
+    /* Forzamos a las cartas a ponerse en fila horizontal */
+    .selection-menu nav ul {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 12px !important;
+        transform: none !important;
         width: 100% !important;
+        padding: 0 !important;
+    }
+
+    /* Reducción clave: encogemos las cartas para que entren completas en el alto del cel */
+    .boton-seleccion, .theme-menu .card-button {
+        width: 110px !important;  /* Ancho perfecto para horizontal */
+        height: 160px !important; /* Alto ajustado para que no se corte por abajo */
+        margin: 0 !important;
+    }
+
+    /* El botón de volver en los menús de selección se va abajo de las tres cartas */
+    .selection-menu nav ul li:last-child {
+        position: relative !important;
+        width: 100% !important; 
         display: flex !important;
         justify-content: center !important;
-        margin-top: 1rem !important;
+        margin-top: 12px !important;
     }
 
     .boton-back, .theme-menu .boton-back {
@@ -2530,9 +2472,9 @@ filter: drop-shadow(0 0 20px #9d00ff);
         bottom: unset !important;
         left: unset !important;
         transform: none !important;
-        padding: 0.7rem 2rem !important;
-        font-size: 1rem !important;
-        margin: 1.5rem auto 2.5rem auto !important;
+        padding: 0.6rem 2rem !important;
+        font-size: 0.9rem !important;
+        margin: 5px auto 15px auto !important;
         display: block !important;
     }
 }
