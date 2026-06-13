@@ -2365,106 +2365,127 @@ filter: drop-shadow(0 0 20px #9d00ff);
     text-shadow: 0 0 8px rgba(255, 51, 51, 0.4);
 }
 /* ==========================================================================
-   CONFIGURACIÓN EXCLUSIVA PARA CELULARES EN HORIZONTAL (LANDSCAPE)
+   SOLUCIÓN MAESTRA INCONDICIONAL PARA PANTALLAS MÓVILES (HORIZONTAL Y VERTICAL)
    ========================================================================== */
-@media (max-width: 932px) and (orientation: landscape) {
+@media (max-width: 950px) {
 
-    /* 1. CONTENEDOR PRINCIPAL: Activamos scroll vertical por si una pantalla es ultra chata */
+    /* --- 1. AJUSTES GENERALES --- */
     .game-container, .selection-menu, .theme-menu, .main-menu {
         height: auto !important;
         min-height: 100vh !important;
-        overflow-y: auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
+        overflow-y: auto !important; /* Habilita el desplazamiento si la pantalla es enana */
     }
 
-    /* 2. SOLUCCIÓN PARA EL TABLERO DE JUEGO (Capturas 1 y 2) */
-    /* El contenedor HUD ahora distribuirá los botones de forma fluida */
+    /* Evitamos que el cuerpo del juego se quede rígido */
+    body {
+        overflow-y: auto !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   ESCENARIO A: EL TELÉFONO ESTÁ ACOStADO (HORIZONTAL / LANDSCAPE)
+   -------------------------------------------------------------------------- */
+@media (max-width: 950px) and (orientation: landscape) {
+
+    /* --- EL GAME BOARD / TABLERO (5001614683668155458.jpg) --- */
+    
+    /* Modificamos el HUD para que actúe como un contenedor flexible al fondo */
     .game-hud {
         display: flex !important;
         flex-direction: row !important;
         justify-content: center !important;
         align-items: center !important;
         flex-wrap: wrap !important;
+        position: relative !important;
         width: 100% !important;
-        padding-bottom: 20px !important;
         margin-top: 15px !important;
+        padding-bottom: 25px !important;
+        top: unset !important;
+        left: unset !important;
+        transform: none !important;
     }
 
-    /* Reducimos y ordenamos los botones REINICIAR y VOLVER uno al lado del otro abajo de la mesa */
+    /* ¡EL GRAN PEO SOLUCIONADO! Sacamos los botones del flujo absoluto */
     #restart-button, .game-hud .boton-back {
         position: relative !important;
         bottom: unset !important;
         left: unset !important;
         transform: none !important;
-        width: 180px !important; /* Tamaño compacto para que no tapen el tapete */
-        height: 38px !important;
+        display: inline-flex !important; /* Se ponen uno al lado del otro horizontalmente */
+        width: 170px !important; /* Tamaño compacto para que no molesten */
+        height: 36px !important;
         font-size: 0.85rem !important;
-        display: inline-flex !important;
+        margin: 10px 8px !important;
         align-items: center !important;
         justify-content: center !important;
-        margin: 10px 8px !important;
-        border-radius: 10px !important;
+        border-radius: 12px !important;
     }
 
-    /* Achicamos los marcadores de los apostadores para que limpien las cartas */
+    /* Reducimos los marcadores flotantes para que limpien el área de juego */
     #marcador-j1, #marcador-j2 {
         top: 8px !important;
-        padding: 4px 8px !important;
-        min-width: 80px !important;
+        padding: 4px 10px !important;
+        min-width: 85px !important;
     }
     #marcador-j1 { left: 2% !important; }
     #marcador-j2 { right: 2% !important; }
-    
-    /* El Timer del centro más pequeño */
+    .nombre-hud { font-size: 0.7rem !important; }
+    .puntos-hud { font-size: 1.2rem !important; }
+
+    /* Timer central y clics pequeños y arriba */
     .game-hud .timer { top: 6px !important; }
     #timer { font-size: 1.6rem !important; }
     
-    /* El marcador de clics totales a la derecha para liberar espacio */
-    .marcador-clics { 
-        top: 8px !important; 
-        right: 15% !important; 
-        left: unset !important; 
+    .marcador-clics {
+        top: 8px !important;
+        right: 12% !important;
+        left: unset !important;
         transform: none !important;
         padding: 4px 10px !important;
     }
 
+    /* Reducimos ligeramente el tablero de cartas para que encaje dentro de la elipse de la mesa */
+    .game-board {
+        max-width: 520px !important; 
+        margin: 50px auto 10px auto !important;
+        gap: 6px !important;
+    }
 
-    /* 3. SOLUCIÓN PARA EL MENÚ DE SELECCIÓN Y TEMAS (Captura 3) */
+
+    /* --- BOTONES DEL MENÚ Y CARTAS DE SELECCIÓN (image_df7863.jpg) --- */
+    
     .selection-menu h2, .theme-menu h2 {
         font-size: 1.3rem !important;
         padding: 0.6rem !important;
         margin: 5px 0 !important;
     }
 
-    /* Forzamos a las cartas a ponerse en fila horizontal */
-    .selection-menu nav ul {
+    /* Forzamos a la lista del menú a desplegarse en una fila limpia de lado a lado */
+    .selection-menu nav ul, .theme-grid {
         display: flex !important;
         flex-direction: row !important;
         justify-content: center !important;
         align-items: center !important;
         gap: 12px !important;
-        transform: none !important;
         width: 100% !important;
+        transform: none !important;
         padding: 0 !important;
     }
 
-    /* Reducción clave: encogemos las cartas para que entren completas en el alto del cel */
+    /* Reducción crítica: Escalamos las cartas para que entren completas en el alto de la pantalla */
     .boton-seleccion, .theme-menu .card-button {
-        width: 110px !important;  /* Ancho perfecto para horizontal */
-        height: 160px !important; /* Alto ajustado para que no se corte por abajo */
+        width: 105px !important;  /* Ancho perfecto para horizontal */
+        height: 155px !important; /* Alto calibrado para que no se corte por abajo */
         margin: 0 !important;
     }
 
-    /* El botón de volver en los menús de selección se va abajo de las tres cartas */
+    /* El botón VOLVER de los menús de selección salta abajo de manera fluida */
     .selection-menu nav ul li:last-child {
         position: relative !important;
-        width: 100% !important; 
+        width: 100% !important;
         display: flex !important;
         justify-content: center !important;
-        margin-top: 12px !important;
+        margin-top: 10px !important;
     }
 
     .boton-back, .theme-menu .boton-back {
@@ -2472,9 +2493,41 @@ filter: drop-shadow(0 0 20px #9d00ff);
         bottom: unset !important;
         left: unset !important;
         transform: none !important;
-        padding: 0.6rem 2rem !important;
+        padding: 0.5rem 2rem !important;
         font-size: 0.9rem !important;
         margin: 5px auto 15px auto !important;
-        display: block !important;
     }
+
+    /* Ocultamos o atenuamos el robot invasivo del menú para maximizar espacio útil */
+    .menu-robot-container {
+        display: none !important; /* En horizontal consume demasiado espacio vertical */
+    }
+}
+
+/* --------------------------------------------------------------------------
+   ESCENARIO B: RESPALDO SI EL TELÉFONO SE COLOCA VERTICAL (PORTRAIT) (image_df78e1.jpg)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) and (orientation: portrait) {
+
+    /* Reajuste del tablero para que las cartas no se desparramen verticalmente */
+    .game-board {
+        max-width: 90vw !important;
+        margin: 150px auto 20px auto !important;
+        gap: 8px !important;
+    }
+
+    /* Los menús de selección se apilan ordenadamente uno debajo del otro */
+    .selection-menu nav ul, .theme-grid {
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+
+    .boton-seleccion, .theme-menu .card-button {
+        width: 140px !important;
+        height: 200px !important;
+    }
+
+    /* Botones de control flotantes controlados abajo */
+    #restart-button { bottom: 80px !important; position: absolute !important; left: 50% !important; transform: translateX(-50%) !important; width: 80% !important; }
+    .game-hud .boton-back { bottom: 25px !important; position: absolute !important; left: 50% !important; transform: translateX(-50%) !important; width: 80% !important; }
 }
