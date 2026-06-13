@@ -1281,3 +1281,1258 @@ filter: drop-shadow(0 0 20px #9d00ff);
         margin: 1.5rem auto 2rem auto !important;
     }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+/* Base */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #050508;
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.oculto {
+    display: none !important;
+}
+/* --- TEMA CLÁSICO (Por defecto) --- */
+body, body[data-theme="clasico"] {
+    --color-pano: #0b6623;
+    --color-letras: #ffffff;
+    --detalles-oro: #f1c40f;
+    --fondo-marcador: #1c2833;
+    
+    --fondo-menu: url('../assets/fondo.png'); 
+    --fondo-seleccion: url('../assets/fondo.png'); 
+    --fondo-tablero: url('../assets/fondo_tablero.jpg');
+
+    /* CARTAS Y DIFICULTADES CLÁSICAS */
+    --carta-atras: url('../assets/carta_trasera.png');
+    --carta-facil: url('../assets/carta_facil.png');
+    --carta-medio: url('../assets/carta_medio.png');
+    --carta-dificil: url('../assets/carta_dificil.png');
+}
+
+/* --- TEMA PLAYA --- */
+body[data-theme="playa"] {
+    --color-pano: #00a8cc;
+    --color-letras: #ffffff;
+    --detalles-oro: #ffb347;
+    --fondo-marcador: #27496d;
+    
+    --fondo-menu: url('../assets/fondo_playa.jpg'); 
+    --fondo-seleccion: url('../assets/fondo_playa.jpg'); 
+    --fondo-tablero: url('../assets/fondo_tablero_playa.jpg');
+
+
+    --carta-atras: url('../assets/carta_trasera_playa.png');
+    --carta-facil: url('../assets/carta_playa_facil.png');
+    --carta-medio: url('../assets/carta_playa_medio.png');
+    --carta-dificil: url('../assets/carta_playa_dificil.png');
+}
+
+
+body[data-theme="mundial"] {
+    --color-pano: #1e824c;
+    --color-letras: #fae5d3;
+    --detalles-oro: #ffffff;
+    --fondo-marcador: #113f26;
+    
+    --fondo-menu: url('../assets/fondo_mund.jpg'); 
+    --fondo-seleccion: url('../assets/fondo_mund.jpg'); 
+    --fondo-tablero: url('../assets/fondo_tablero_mundial.jpg');
+
+
+    --carta-atras: url('../assets/carta_trasera_mundial.jpg');
+    --carta-facil: url('../assets/carta_mundial_facil.png');
+    --carta-medio: url('../assets/carta_mundial_medio.png');
+    --carta-dificil: url('../assets/carta_mundial_dificil.png');
+}
+/* Menu principal */
+.main-menu {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    background: var(--fondo-menu) no-repeat center center;
+    background-size: cover;
+    box-sizing: border-box;
+    
+    /* Transición suave de 0.5 segundos para el cambio de fondo */
+    transition: background 0.5s ease-in-out;
+
+}
+.menu-franja {
+    width: 100%;
+    height: 100px;
+    background-color: rgba(10, 10, 14, 0.8);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 4rem; 
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+/* Titulo */
+.main-menu h1 {
+    color: #ffffff; 
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    z-index: 11; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    background-color: transparent; 
+    padding: 0;
+    border-radius: 0;
+    }
+
+/* Robot */
+.menu-robot-container {
+    position: absolute;
+    bottom: 0;
+    right: 0%;
+    width: 560px;
+    z-index: 1;
+    pointer-events: none; 
+    animation: flotarRobot 2s ease-in-out infinite;
+}
+
+.robot-menu {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 15px rgba(157, 0, 255, 0.55));
+}
+body[data-theme="playa"] .menu-robot-container {
+    width: 440px;         
+    height: 80vh;
+    animation: flotarRobot 2s ease-in-out infinite; /* Mantiene el ritmo suave */
+}
+body[data-theme="mundial"] .menu-robot-container {
+    width: 440px;       
+    height: 70vh;
+    animation: flotarRobot 2s ease-in-out infinite; /* Mantiene el ritmo suave */
+}
+
+@keyframes flotarRobot {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Botones menu */
+.main-menu nav {
+    flex-grow: 1;         
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-start;
+    align-items: center;   
+    gap: 1.2rem;          
+    z-index: 2;
+    padding-left: 5%;
+    padding-right: 38%;     
+}
+
+.main-menu nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;   
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;        
+}
+
+.main-menu nav li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Botones del menu */
+.boton-menu {
+    cursor: pointer;
+}
+
+/* Efecto al pasar el mouse */
+.boton-menu:hover {
+    transform: scale(1.05);
+}
+
+.boton-menu {
+    background: transparent !important;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Efecto interactivo al pasar sobre la imagen */
+.boton-menu:hover {
+    transform: translateY(-8px);
+    filter: drop-shadow(0 0 15px #9d00ff)
+}
+
+/* La imagen se adapta al tamaño que le das al botón */
+.boton-menu img {
+    height: auto;
+    width: 230px;
+    display: block;
+    background-color: transparent;
+}
+
+.boton-menu-tema {
+    background: transparent !important;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.boton-menu-tema:hover {
+    transform: translateY(-8px);
+    filter: drop-shadow(0 0 15px #9d00ff)
+}
+
+.boton-menu-tema img {
+    height: auto;
+    width: 230px;
+    display: block;
+    background-color: transparent;
+}
+
+/* Estilo para las cartas */
+.carta {
+    width: 100%;
+    height: 100%;
+    max-width: 11vh;
+    max-height: 11vh;
+    perspective: 1000px;
+    cursor: pointer;
+    justify-self: center;
+    align-self: center;
+}
+
+.img-carta {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    border-radius: 8px;
+}
+
+.carta-interior {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.carta.volteada .carta-interior {
+    transform: rotateY(180deg);
+}
+.carta-atras {
+   background-image: var(--carta-atras); /* VARIABLE DINÁMICA */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    transition: background-image 0.3s ease-in-out; 
+}           
+
+.carta-atras, .carta-frente {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px; 
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.carta-frente {
+    background-color: transparent;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.carta.acertada {
+    opacity: 0.6 !important;
+    transform: scale(0.95); 
+    transition: all 0.3s ease;
+    cursor: default;
+    pointer-events: none; 
+}
+
+#inputs-nombres {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: -50px auto 0 auto; 
+    padding: 10px;
+    width: 100%;
+}
+
+.flex-input {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#inputs-nombres input[type="text"] {
+    position: absolute; 
+    pointer-events: auto; 
+    width: 200px; 
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    color: #fff;
+    background: rgba(158, 158, 158, 0.85);
+    border: 2px solid #333;
+    border-radius: 6px;
+    outline: none;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+/* Placeholder */
+#inputs-nombres input[type="text"]::placeholder {
+    color: #ffffff;
+    font-size: 0.85rem;
+}
+
+#input-j1 {
+    top: 40px;  
+    left: 40px;  
+}
+#input-j1:focus {
+    border-color: #00ffff;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+}
+
+#input-j2 {
+    top: 40px;  
+    right: 40px; 
+}
+#input-j2:focus {
+    border-color: #ff00ff;
+    box-shadow: 0 0 12px rgba(255, 0, 255, 0.6);
+}
+
+/* Menu dificultad */
+.selection-menu {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+   background: var(--fondo-seleccion) no-repeat center center; 
+    background-size: cover;
+    box-sizing: border-box;
+    padding: 0;
+    transition: background 0.5s ease-in-out;
+}
+
+/* Estilo de subtitulo */
+.selection-menu h2 {
+    color: #ffffff; 
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 4rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    width: 100%;
+    height: 100px;
+    background-color: rgba(10, 10, 14, 0.8);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+}
+
+/* Cartas */
+.selection-menu nav {
+    width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.selection-menu nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3.5rem;
+    width: 100%;
+    transform: translateY(-40px);
+    position: relative;
+}
+
+.selection-menu nav li {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.selection-menu nav ul li:last-child {
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: auto;
+}
+
+/* Boton con imagen */
+.boton-seleccion {
+    display: block;
+    width: 250px;       
+    height: 365px;     
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    background-color: transparent !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    color: transparent !important;
+    font-size: 0 !important;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
+}
+
+#Facil {
+    background-image: var(--carta-facil); 
+}
+#Medio {
+    background-image: var(--carta-medio); 
+}
+#Dificil {
+    background-image: var(--carta-dificil); 
+}
+
+.boton-seleccion:hover {
+    transform: translateY(-12px) scale(1.02);
+    filter: drop-shadow(0 0 20px #9d00ff);
+}
+
+/* Estilo de boton de volver */
+.boton-back {
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+    background: linear-gradient(135deg, #9d00ff, #6e00ff);
+    color: #ffffff;
+    border: none;
+    padding: 1.2rem 3.5rem;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(110, 0, 255, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    display: block;
+    margin: 0 !important;
+    white-space: nowrap; 
+}
+
+.boton-back:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(157, 0, 255, 0.6);
+    filter: brightness(1.15);
+}
+
+.boton-back:active {
+    transform: translateY(1px);
+}
+
+.game-container {
+    position: absolute;
+    width: 100vw;
+    height: 56.25vw; 
+    max-height: 100vh;
+   background: var(--fondo-tablero) no-repeat center center !important; 
+    background-size: contain !important; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    z-index: 1;
+    transition: background 0.5s ease-in-out;
+}
+
+.game-board, #memory-board {
+    position: absolute;
+    display: grid;
+    gap: 6px; 
+    width: 46vh;   
+    height: 61vh;  
+    box-sizing: border-box;
+    top: 56%;   
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    perspective: 1000px; /* Asegura el efecto 3D en PC */
+}
+
+/* Manejo de filas y columnas en PC según la dificultad */
+.game-board[data-dimension="4"], #memory-board[data-dimension="4"] {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+.game-board[data-dimension="6"], #memory-board[data-dimension="6"] {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+.game-board[data-dimension="8"], #memory-board[data-dimension="8"] {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+}
+
+#dealer-zone {
+    display: none !important;
+}
+
+.game-hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.game-hud * {
+    pointer-events: auto;
+}
+
+.game-hud h2 {
+    display: none !important;
+}
+
+ /* Estilo del timer */
+.game-hud .timer {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+#timer {
+    font-size: 3.5rem; 
+    color: #ffffff;
+    font-variant-numeric: tabular-nums; 
+    display: inline-block;
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+}
+
+#timer.tiempo-alerta {
+    color: #ff0055;
+    text-shadow: 0 0 25px #ff0055;
+    animation: pulsoAlerta 1s infinite alternate;
+}
+
+#restart-button {
+    position: absolute !important;
+    bottom: 20%;
+    left: 6%;
+    width: auto;
+    padding: 1rem 2.2rem;
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+    background: #00ffcc; 
+    color: #ffffff; 
+    border: 2px solid #00ffcc;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    z-index: 1000;
+}
+
+#restart-button:hover {
+    transform: translateY(-4px);
+    background-color: rgba(0, 255, 204, 0.1) !important;
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.5);
+}
+
+#restart-button:active {
+    transform: translateY(1px);
+}
+
+.game-hud .boton-back {
+    position: absolute !important;
+    bottom: 10%;
+    left: 6%;
+    width: auto;
+    padding: 1rem 2.2rem;
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+    background: #00ffcc; 
+    color: #ffffff; 
+    border: 2px solid #00ffcc;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    z-index: 1000;
+}
+
+.marcador-hud {
+    position: absolute;
+    top: 20px;
+    background: rgba(10, 10, 14, 0.85);
+    backdrop-filter: blur(4px);
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 130px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Contador de Movimientos */
+.marcador-clics {
+    position: absolute;
+    top: 20px;
+    right: 6%; 
+    background: rgba(10, 10, 14, 0.85);
+    backdrop-filter: blur(4px);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 140px;
+    z-index: 1000;
+    pointer-events: auto; 
+}
+
+.etiqueta-movimientos {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.contador-clics {
+    font-size: 2rem;
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+    color: #00ffcc;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+}
+
+#marcador-j1 {
+    left: 20%;
+    border: 2px solid #ff0055;
+    top: 50%;
+    box-shadow: 0 0 15px #ff0055;
+}
+
+#marcador-j2 {
+    right: 20%;
+    border: 2px solid #0055ff;
+    top: 50%;
+    box-shadow: 0 0 15px #0055ff;
+}
+
+.nombre-hud {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 2px;
+}
+
+.puntos-hud {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.contenedor-turno-central {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    z-index: 10;
+}
+
+#mensaje-turno {
+    margin: 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.etiqueta-turno {
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+#nombre-apostador {
+    padding: 4px 14px;
+    border-radius: 6px;
+    color: #ffffff !important;
+}
+
+.turno-j1 #nombre-apostador {
+    background: linear-gradient(135deg, #ff0055, #990033);
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+}
+
+.turno-j2 #nombre-apostador {
+    background: linear-gradient(135deg, #0055ff, #00115c);
+    box-shadow: 0 0 10px rgba(0, 85, 255, 0.5);
+}
+
+@keyframes pulsoAlerta {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+/* Contenedor de Racha */
+.streak-container {
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    backdrop-filter: blur(2px);
+    pointer-events: none; 
+}
+
+/* Imagen del robot con animación */
+.robot-frenetico {
+    width: 450px;
+    height: auto;
+    filter: drop-shadow(0 0 30px #ff0055) drop-shadow(0 0 50px #ffcc00);
+    animation: aparecerSusto 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, sacudidaFrenetica 0.1s infinite alternate;
+}
+
+/* Texto neón abajo del robot */
+.texto-racha {
+    font-family: 'Luckiest Guy', cursive, sans-serif;
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 0 0 10px #ff0055, 0 0 30px #ff0055, 0 0 60px #ffcc00;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    animation: aparecerSusto 0.2s ease forwards;
+}
+
+/* Animaciones */
+@keyframes aparecerSusto {
+    0% { transform: scale(0.3); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes sacudidaFrenetica {
+    0% { transform: translate(4px, 4px) rotate(2deg); }
+    100% { transform: translate(-4px, -4px) rotate(-2deg); }
+}
+
+
+.popup-logro-notificacion {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #111;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc;
+    border-radius: 8px;
+    padding: 12px 20px;
+    color: #fff;
+    z-index: 1001;
+    font-family: sans-serif;
+    animation: entrarLogro 0.4s ease forwards, salirLogro 0.4s ease 3s forwards;
+}
+
+.popup-logro-notificacion strong {
+    color: #ffcc00;
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 3px;
+}
+
+.popup-logro-notificacion p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+@keyframes entrarLogro {
+    0% { transform: translateX(120%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes salirLogro {
+    0% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(120%); opacity: 0; }
+}
+
+/* End Screen */
+.modal-fin-partida {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(7, 7, 11, 0.94); 
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    animation: fadeInEndScreen 0.3s forwards ease-out;
+}
+
+.contenido-modal-fin {
+    background: #0c0c12;
+    border: 3px solid #00ffcc;
+    box-shadow: 0 0 35px rgba(0, 255, 204, 0.4);
+    padding: 35px 45px;
+    border-radius: 14px;
+    text-align: center;
+    max-width: 480px;
+    width: 85%;
+    transform: scale(0.85);
+    animation: popEndScreen 0.3s forwards cubic-bezier(0.175, 0.885, 0.32, 1.25);
+}
+
+.titulo-fin {
+    font-size: 2.4rem;
+    color: #00ffcc;
+    text-shadow: 0 0 12px rgba(0, 255, 204, 0.5);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.mensaje-fin {
+    font-size: 1.15rem;
+    color: #ffffff;
+    margin-bottom: 22px;
+    line-height: 1.4;
+}
+
+.detalles-fin {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 18px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border-left: 4px solid #ff007f; 
+}
+
+.detalles-fin p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    margin: 6px 0;
+}
+
+.detalles-fin strong {
+    color: #ff007f;
+    text-shadow: 0 0 5px rgba(255, 0, 127, 0.3);
+}
+
+.marcador-final-flex {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-top: 10px;
+}
+
+.boton-fin-menu {
+    background: transparent;
+    border: 2px solid #00ffcc;
+    color: #00ffcc;
+    padding: 12px 28px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.boton-fin-menu:hover {
+    background: #00ffcc;
+    color: #0c0c12;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+    transform: translateY(-2px);
+}
+
+.resaltado-clics {
+    color: #00ffcc !important;
+    text-shadow: 0 0 8px rgba(0, 255, 204, 0.4);
+}
+
+/* Animaciones */
+@keyframes fadeInEndScreen {
+    to { opacity: 1; }
+}
+
+@keyframes popEndScreen {
+    to { transform: scale(1); }
+}
+
+/* EndScreen de derrota por tiempo */
+.modal-derrota .contenido-modal-fin {
+    border-color: #ff3333;
+    box-shadow: 0 0 35px rgba(255, 51, 51, 0.45);
+}
+
+.titulo-derrota {
+    color: #ff3333 !important;
+    text-shadow: 0 0 15px rgba(255, 51, 51, 0.7) !important;
+    letter-spacing: 2px;
+}
+
+.detalles-derrota {
+    border-left: 4px solid #b30000 !important;
+    background: rgba(255, 51, 51, 0.02) !important;
+}
+
+.detalles-derrota strong {
+    color: #ff3333 !important;
+    text-shadow: 0 0 5px rgba(255, 51, 51, 0.4) !important;
+}
+
+.boton-reintentar {
+    border-color: #ff3333 !important;
+    color: #ff3333 !important;
+}
+
+.boton-reintentar:hover {
+    background: #ff3333 !important;
+    color: #0c0c12 !important;
+    box-shadow: 0 0 22px rgba(255, 51, 51, 0.6) !important;
+    transform: translateY(-2px);
+}
+/* Temas */
+.theme-menu {
+position: relative;
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+background: url('../assets/fondo.png') no-repeat center center;
+background-size: cover;
+box-sizing: border-box;
+padding: 0;
+}
+
+.theme-menu h2 {
+color: #ffffff; 
+font-size: 2.8rem;
+text-transform: uppercase;
+letter-spacing: 3px;
+margin: 0 0 0 0;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+text-align: center;
+width: 100%;
+height: 100px;
+background-color: rgba(10, 10, 14, 0.8);
+backdrop-filter: blur(6px);
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+font-family: 'Luckiest Guy', cursive, sans-serif;
+}
+
+.theme-grid {
+display: flex !important;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+gap: 3.5rem;
+width: 100%;
+height: calc(100vh - 220px);
+transform: translateY(-20px);
+}
+
+.theme-menu .card-button {
+    display: block;
+    width: 250px;      
+    height: 365px;     
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    background-color: transparent !important;
+    background-repeat: no-repeat;
+    background-position: center;    
+    background-size: contain;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
+}
+
+.theme-menu .card-button .card-img,
+.theme-menu .card-button .card-footer {
+    display: none !important;
+}
+
+.theme-menu .card-button[data-theme="clasico"] {
+    background-image: url('../assets/robot_mesa.png') !important; 
+}
+
+.theme-menu .card-button[data-theme="playa"] {
+    background-image: url('../assets/robot_mesa_p.png') !important;
+}
+
+.theme-menu .card-button[data-theme="mundial"] {
+    background-image: url('../assets/robot_mesa_f.png') !important;
+}
+
+.theme-menu .card-button:hover {
+transform: translateY(-12px) scale(1.02);
+filter: drop-shadow(0 0 20px #9d00ff);
+}
+
+.theme-menu .boton-back {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.resaltado-clics-derrota {
+    color: #ff3333 !important;
+    text-shadow: 0 0 8px rgba(255, 51, 51, 0.4);
+}
+/* ==========================================================================
+   PARCHE RESPONSIVE UNIFICADO (PC SE QUEDA IGUAL, ADAPTABLE A CUALQUIER TELÉFONO)
+   ========================================================================== */
+@media (max-width: 900px) {
+
+    /* --- 1. CONTENEDORES GENERALES Y SCROLL --- */
+    .game-container {
+        height: 100vh !important;
+        width: 100vw !important;
+        max-height: 100vh !important;
+        background-size: cover !important;
+    }
+
+    .selection-menu, .theme-menu, .main-menu {
+        height: auto !important;
+        min-height: 100vh !important;
+        overflow-y: auto !important; /* Permite scroll con el dedo si falta pantalla */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+    }
+
+    /* --- 2. SECCIÓN DEL TABLERO DE JUEGO (GAMEPLAY) --- */
+    /* HUD de los Apostadores arriba en paralelo */
+    #marcador-j1, #marcador-j2 {
+        top: 25px !important;
+        transform: none !important;
+        min-width: 95px !important;
+        padding: 6px 10px !important;
+    }
+    #marcador-j1 { left: 4% !important; }
+    #marcador-j2 { right: 4% !important; }
+    .nombre-hud { font-size: 0.75rem !important; }
+    .puntos-hud { font-size: 1.4rem !important; }
+
+    /* Timer y Clics al centro */
+    .game-hud .timer { top: 22px !important; }
+    #timer { font-size: 2.2rem !important; }
+
+    .marcador-clics {
+        top: 85px !important;
+        left: 50% !important;
+        right: unset !important;
+        transform: translateX(-50%) !important;
+        min-width: 120px !important;
+        padding: 4px 12px !important;
+    }
+    .etiqueta-movimientos { font-size: 0.7rem !important; }
+    .contador-clics { font-size: 1.3rem !important; }
+    .contenedor-turno-central { top: 145px !important; }
+    #mensaje-turno { font-size: 1.1rem !important; }
+
+    /* Botones de Control del Juego (Abajo del Tablero de Cartas) */
+    #restart-button, .game-hud .boton-back {
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 85% !important;
+        max-width: 280px !important;
+        padding: 10px 0 !important;
+        font-size: 1rem !important;
+        height: 40px !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px !important;
+    }
+    #restart-button {
+        bottom: 85px !important;
+        background: #00ffcc !important;
+        color: #050508 !important;
+    }
+    .game-hud .boton-back {
+        bottom: 30px !important;
+        background: transparent !important;
+        color: #00ffcc !important;
+        border: 2px solid #00ffcc !important;
+    }
+
+    /* Efectos visuales de racha escalados */
+    .robot-frenetico { width: 70vw !important; }
+    .texto-racha { font-size: 2.2rem !important; letter-spacing: 2px; }
+
+
+    /* --- 3. MENÚ PRINCIPAL --- */
+    .menu-franja {
+        height: auto !important;
+        padding: 1.5rem 1rem !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    .main-menu h1 { font-size: 1.6rem !important; text-align: center !important; }
+
+    .main-menu nav {
+        padding: 2rem 0 !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        width: 100% !important;
+    }
+    .main-menu nav ul { flex-direction: column !important; gap: 1.5rem !important; }
+    .boton-menu img, .boton-menu-tema img { width: 180px !important; }
+
+    /* Robot de fondo como marca de agua trasera */
+    .menu-robot-container, 
+    body[data-theme="playa"] .menu-robot-container, 
+    body[data-theme="mundial"] .menu-robot-container {
+        width: 260px !important;
+        height: auto !important;
+        bottom: 0 !important;
+        right: 50% !important;
+        transform: translateX(50%) !important;
+        opacity: 0.35 !important;
+        z-index: 1 !important;
+    }
+
+
+    /* --- 4. MENÚS DE SELECCIÓN (DIFICULTAD Y TEMAS) --- */
+    .selection-menu h2, .theme-menu h2 {
+        font-size: 1.6rem !important;
+        height: auto !important;
+        padding: 1.5rem 1rem !important;
+        flex-shrink: 0 !important;
+    }
+
+    .selection-menu nav, .theme-grid {
+        height: auto !important;
+        padding: 1.5rem 0 !important;
+        transform: none !important;
+    }
+
+    .selection-menu nav ul {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important; /* Si se usa horizontal y no caben, saltan abajo */
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
+        width: 90% !important;
+        transform: none !important;
+    }
+
+    /* Tamaño compacto perfecto para las cartas neón */
+    .boton-seleccion, .theme-menu .card-button {
+        width: 130px !important;
+        height: 190px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Reubicar botones de volver en los menús de selección */
+    .selection-menu nav ul li:last-child {
+        position: relative !important;
+        bottom: unset !important;
+        left: unset !important;
+        transform: none !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin-top: 1rem !important;
+    }
+
+    .boton-back, .theme-menu .boton-back {
+        position: relative !important;
+        bottom: unset !important;
+        left: unset !important;
+        transform: none !important;
+        padding: 0.7rem 2rem !important;
+        font-size: 1rem !important;
+        margin: 1.5rem auto 2.5rem auto !important;
+        display: block !important;
+    }
+}
